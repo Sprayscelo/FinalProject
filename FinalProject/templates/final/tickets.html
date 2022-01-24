@@ -1,0 +1,157 @@
+{%extends "final/layout.html" %}
+{% load static %}
+{% block tickets %}
+{% if allTickets %}
+<h1 class="text-center">Tickets Visualization</h1>
+<div id="ticketsContainer">
+        <div id="ticketHeader">
+            <span> ID </span>
+            <span> Tittle </span>
+            <span> Costumer </span>
+            <span> Plate </span>
+            <span> Responsible </span>
+            <span> Priority</span>
+            <span> Created Date </span>
+        </div>
+    {% for ticket in allTickets %}
+        <div id="allTickets">
+            <a href="{% url 'ticketDetails' ticket.id %}" class="btn btn-light" >
+                <span> {{ ticket.id }}</span>
+                <span> {{ ticket.tittle }}</span>
+                <span> {{ ticket.costumer.name }}</span>
+                <span> {{ ticket.plate }}</span>
+                <span> {{ ticket.responsible }}</span>
+                <span> {{ ticket.priority }}</span>
+                <span> {{ ticket.createDate|date:"d/m/Y - H:i:s" }}</span>
+            </a>
+        </div>
+    {% endfor  %}
+</div>
+
+<!-- SINGLE TICKET BLOCK PART!!!! -->
+
+{% elif ticketDetails %}
+<div id="mainTicketDetailsContainer">
+    <div class="text-center">
+        <img src="" alt="">
+        <h1> {{ticketDetails.tittle}}</h1>
+    </div>
+    <div class="text-center" id="ticketDetailsStatusContainer">
+            {% csrf_token %}
+            {% for status in ticketStatus%}
+                <button type="button" data-status="{{ ticketDetails.status }}" data-id="{{ ticketDetails.id }}" id="ticketDetailstStatus" class="btn btn-outline-secondary btn-sm">{{status.1}}</button>
+            {% endfor%}
+    </div>
+    <br>
+    <div data-id="{{ticketDetails.id}}" id="ticketDetailsContainer">
+        <div id="TicketDetailsForm">
+            <form action="{% url 'ticketDetails' ticketDetails.id%}" method="POST">
+                {% csrf_token %}
+                <label for="">Tittle<input name="ticketDetailsTittle" class="form-control" type="text" value="{{ticketDetails.tittle}}"></label>
+                <label for="">Priority
+                    <select class="form-select" name="ticketDetailsPriority" id="ticketDetailsPriority"> 
+                    {%for priority in ticketPriority%}
+                        <option value="{{priority.0}}" 
+                        {% if priority.0 == ticketDetails.priority %}selected{% endif %}>
+                            {{priority.0}}
+                        </option>
+                    {%endfor%}
+                    </select>
+                </label>
+                <label for="">Group
+                    <select class="form-select" name="ticketDetailsGroup" id="">
+                        {% for group in ticketGroup %}
+                        <option {% if group.0 == ticketDetails.group %}selected{% endif %} value="{{ group.1 }}">
+                            {{ group.1 }}
+                        </option>
+                        {% endfor%}
+                    </select>
+                </label>
+                <label for=""> Costumer: 
+                    <select class="form-select" name="ticketDetailsCostumer" id="">
+                        {% for costumer in allCostumers%}
+                            <option value="{{ costumer.id }}"
+                            {% if costumer|lower == ticketDetails.costumer|lower %}selected{% endif %}> 
+                                {{ costumer.name }}
+                            </option>
+                        {%endfor %}
+                </select>
+            </label>
+                <label for=""> Plate: <input name="ticketDetailsPlate" class="form-control" type="text" value="{{ticketDetails.plate}}"></label>
+                <label for=""> Responsible: 
+                    <select class="form-select" name="ticketDetailsResponsible" id="">
+                        {% for user in Users %}
+                            <option value="{{ user.id }}" 
+                            {% if user|lower == ticketDetails.responsible|lower %}selected{% endif %}>
+                                {{ user.username }}
+                            </option>
+                        {%endfor %}
+                    </select>
+                </label>
+                <label id="ticketDetailsDescription" for=""> Description <textarea class="form-control" name="" id="" cols="" rows="2" >{{ticketDetails.description}}</textarea></label>
+                <label for="">Action made:
+                    <select class="form-select" name="ticketDetailsActionMade" id="">
+                        {% for action in ticketActionMade%}
+                            <option 
+                                {% if action.0 == ticketDetails.actionMade %}selected{% endif %} value="{{action.1}}"> 
+                                {{action.1}} 
+                            </option>
+                        {% endfor%}
+                    </select>
+                </label>
+                <label for="">Analyzed Item
+                    <select class="form-select" name="ticketDetailsAnalyzedItem" id="analyzedItenSelect">
+                        {% for iten in ticketAnalyzedItens %}
+                                <option value="{{iten.1}}" 
+                                {% if iten.1 == ticketDetails.analyzedIten %}selected{% endif %}>
+                                    {{iten.1}}
+                                </option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label for=""> Created by: <strong> {{ticketDetails.createdBy}}</strong></label>
+                <span id="ticketDetailsCreatedDate"> Created Date: {{ticketDetails.createDate|date:"d/m/Y - H:i:s"}}</span>
+                <label id="ticketDetailsSolution" for="">Solution
+                    <textarea name="ticketDetailsSolution" id="ticketDetailsSolution" cols="" rows="2">{{ticketDetails.solution}}</textarea>
+                </label>
+                <label for=""> Ticket ended on: <input id="ticketDetailsEndDate" class="form-control" disabled type="text" value="{{ticketDetails.endDate|date:'d/m/Y H:i:s'}}"></label>
+                <label for="">
+                    Ticket Score:
+                    <input class="form-control" disabled type="text" name="ticketDetailsScore" id="" value="{{ticketDetailsScore}}">
+                </label>
+                <input type="submit" class="btn btn-warning text-center form-control" value="Save" id="ticketEditSubmit" name="ticketDetailsSubmit">
+            </form>
+        </div>
+        <hr>
+        <h2 class="text-center">Commentaries</h2>
+        <section>
+            <div id="commentContainerForm">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                        <textarea name="commentContent" id="commentContent" cols="" rows="2"></textarea>
+                    <input class="btn btn-dark" value="Add Comment" type="submit" name="" id="">
+                </form>
+            </div>
+            <div id="commentContainerAll">
+                {% for comment in ticketDetails.comments.all reversed %}
+                <div>
+                    <p> <strong> {{ comment.user }} </strong></p>
+                    <span> {{ comment.content }}</span>
+                    <div>
+                        <small> {{ comment.createDate|date:"d/m/Y - H:i:s" }}</small>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+            </div>
+        </section>
+        <!-- COMETARIOS DOS TICKETS -->
+    </div>
+    <script src="{% static 'tickets.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'tickets.css' %}">
+</div>
+{% endif %}
+
+<!-- FIM DOS DETALHES DOS TICKETS !!!! -->
+
+{%endblock%}

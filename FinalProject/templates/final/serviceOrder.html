@@ -1,0 +1,151 @@
+{%extends "final/layout.html" %}
+{% load static %}
+{%block serviceOrder %}
+{% if allServiceOrders %}
+<h1 class="text-center"> Service Orders</h1>
+<div>
+    <div id="serviceOrderHeader">
+        <span> ID </span>
+        <span> Tittle </span>
+        <span> Status </span>
+        <span> Costumer </span>
+        <span> Plate </span>
+        <span> CreateDate </span>
+        <span> Schedule </span>
+    </div>
+    {% for so in allServiceOrders %}
+    <div id="allServiceOrder">
+        <a href="{% url 'serviceOrdersDetails' so.id %}" class="btn btn-light">
+            <span>{{ so.id }}</span>
+            <span>{{ so.tittle }}</span>
+            <span>{{ so.status }}</span>
+            <span>{{ so.costumer.name }}</span>
+            <span>{{ so.plate }}</span>
+            <span>{{ so.createDate|date:"d/m/Y - H:i:s" }}</span>
+            <span>{{ so.schedule|date:"d/m/Y - H:i:s" }}</span>
+        </a>
+    </div>
+    {%endfor%}
+</div>
+
+<!-- SINGLE SERVICE ORDER BLOCK PART!!!! -->
+
+{% elif serviceOrdersDetails %}
+<div data-pageID="serviceOrdersDetails.id" id="mainServiceOrderContainer">
+    <div class="text-center">
+        <h1> {{ serviceOrdersDetails.tittle }}</h1>
+    </div>
+    <div class="text-center" id="serviceOrdersStatusContainer">
+        {% csrf_token %}
+        {% for status in serviceOrdersStatusChoices%}
+            <button type="button" data-status="{{ serviceOrdersDetails.status }}" name="serviceOrderDetailsStatus" id="serviceOrderDetailsStatus" class="btn btn-outline-secondary btn-sm">{{ status.0 }}</button>
+        {% endfor %}
+    </div>
+    <div id="serviceOrderDetailsContainer">
+        <div id="ServiceOrdersForm">
+            <form action="{% url 'serviceOrdersDetails' serviceOrdersDetails.id %}" method="POST" >
+                {% csrf_token %}
+                <label for="">Tittle:
+                    <input class="form-control" type="text" name="serviceOrderDetailsTittle" value="{{serviceOrdersDetails.tittle }}" id="">
+                </label>
+                <label for=""> Costumer:
+                    <select class="form-select" name="serviceOrderDetailsCostumer" id="">
+                        {% for costumer in allCostumers %}
+                        <option value="{{ costumer.id }}"
+                        {% if costumer.name == serviceOrdersDetails.costumer.name %} selected {% endif%}>
+                        {{ costumer.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label for="serviceOrderDetailsPlate">Plate:
+                <input class="form-control" type="text" name="serviceOrderDetailsPlate" id="serviceOrderDetailsPlate" value="{{ serviceOrdersDetails.plate }}">
+            </label>
+            <label id="serviceOrderDetailsDescription" for="serviceOrderDetailsDescription">Description:
+                <textarea name="serviceOrderDetailsDescription" id="serviceOrderDetailsDescription" cols="" rows="2"></textarea>
+            </label>
+            <label for=""> Responsible:
+                    <select class="form-select" name="" id="">
+                        {% for responsible in users %}
+                        <option value="{{ responsible.id }}"
+                            {% if responsible.username == serviceOrdersDetails.responsible %}selected{% endif %}>
+                                {{ responsible.username }}
+                        </option>
+                        {% endfor%}
+                    </select>
+                </label>
+                <label for=""> Related Tickets:
+                    {% for relatedTickets in serviceOrdersDetails.relatedTicket.all%}
+                        <a href="">#{{ relatedTickets.id }}</a>
+                    {% endfor%}
+                </label>
+                <label for="">Related Equipments
+                    {% for relatedEquipments in serviceOrdersDetails.relatedEquipment.all %}
+                    <a href=""> #{{ relatedEquipments.id }}</a>
+                    {% endfor%}
+                </label>
+                <label for="">Related Services:
+                    
+                </label>
+                <label for="">
+                    Schedule date:
+                    <input type="datetime-local" name="serviceOrderDetailsSchedule">
+                </label>
+                <input class="btn btn-warning" type="submit" name="" id="" value="Save">
+            </form>
+        </div>
+        <div id="serviceContents">
+            <form action="{% url 'serviceOrdersDetails' serviceOrdersDetails.id %}" method="POST">
+                {% csrf_token %}
+                <select class="form-select" multiple name="serviceContentSelected" id="SelectedServices">
+                    {% for service in allServices %}
+                    <option value="{{ service.id }}"
+                    {% if service in serviceOrdersDetails.relatedService.all%} selected {% endif %}>
+                    {{ service.name }} | Price: {{ service.price }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <input type="submit" id="serviceContentsAddServices" class="btn btn-outline-primary" value="Add services">
+            </form>
+            <div id="serviceExibition">
+                <div class="text-center" id="serviceExibitionColum">
+                    <span id="serviceExibitionColumInformation">Item Information</span>
+                    <span>Amount</span>
+                    <span>Price</span>
+                </div>
+                {% for exibition in serviceOrdersDetails.relatedService.all %}
+                <div class="text-center" id="serviceExibitionItems">
+                    <a href="" id="serviceExbitionName">{{ exibition.name }}</a>
+                    <span>1</span>
+                    <span>{{ exibition.price }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <section>
+            <div id="commentContainerForm">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                        <textarea name="commentContent" id="commentContent" cols="" rows="2"></textarea>
+                    <input class="btn btn-dark" value="Add Comment" type="submit" name="" id="">
+                </form>
+            </div>
+            <div id="commentContainerAll">
+                {% for comment in serviceOrdersDetails.comments.all reversed %}
+                <div>
+                    <p> <strong> {{ comment.user }} </strong></p>
+                    <span> {{ comment.content }}</span>
+                    <div>
+                        <small> {{ comment.createDate|date:"d/m/Y - H:i:s" }}</small>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endif%}
+<script src="{% static 'serviceOrder.js' %}"></script>
+<link rel="stylesheet" href="{% static 'serviceOrder.css' %}">
+{%endblock%}

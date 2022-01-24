@@ -1,0 +1,27 @@
+{%extends "final/layout.html" %}
+
+{% block services %}
+<h1 class="text-center"> Services Visualization</h1>
+<div>
+    <div id="servicesHeader">
+        <span> ID </span>
+        <span> Status </span>
+        <span> Categorie </span>
+        <span> Price </span>
+        <span> Description </span>
+        <span> Created By </span>
+    </div>
+    {% for services in allServices%}
+    <div id="allServices">
+        <a href="" class="btn btn-light">
+            <span> {{ services.id }} </span>
+            <span> {{ services.status }} </span>
+            <span> {{ services.categorie }} </span>
+            <span> {{ services.price }} </span>
+            <span> {{ services.description }} </span>
+            <span> {{ services.createdBy }} </span>
+        </a>
+    </div>
+    {% endfor%}
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'final/layout.html' %}
+
+{%block costumer %}
+
+<h1 class="text-center"> Costumers </h1>
+
+<div id="costumerContainer">
+    <div id="costumerHeader">
+        <span> ID </span>
+        <span> Type </span>
+        <span> Name </span>
+        <span> CNPJ </span>
+        <span> Email </span>
+        <span> City </span>
+        <span> Address </span>
+    </div>
+    {% for costumer in allCostumers %}
+    <div id="allCostumers">
+        <a href="" class="btn btn-light">
+            <span> {{ costumer.id }} </span>
+            <span> {{ costumer.type }} </span>
+            <span> {{ costumer.clientName }} </span>
+            <span> {{ costumer.CNPJ }} </span>
+            <span> {{ costumer.email }} </span>
+            <span> {{ costumer.city }} </span>
+            <span> {{ costumer.address }}</span>
+        </a>
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}

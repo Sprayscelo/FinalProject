@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Nunito+Sans:wght@200&family=Playfair+Display&family=Titillium+Web&display=swap');
+body{
+    margin: 0%;
+}
+* {
+    font-family: 'Dongle', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Playfair Display', serif;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+/* Menu Bar */
+.navContainer {
+    display: grid;
+    grid-template-columns:repeat(6, 1fr);
+    place-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.navContainer a {
+    width: 100%;
+    padding: 5px;
+}
+
+nav {
+    background-color: rgb(14, 148, 14);
+    position: relative;
+    height: 5%;
+}
+
+/* Tickets/ServiceOrders Headers */
+
+#ticketHeader, #serviceOrderHeader, #costumerHeader, #equipmentsHeader, #productsHeader, #servicesHeader {
+    display: grid;
+    grid-template-columns: 5% repeat(6, minmax(100px, 1fr));
+    place-items: center;
+    margin-bottom: 5px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+/* ALL - Tickets/ServiceOrders */
+
+#allTickets a, #allServiceOrder a, #allCostumers a, #allEquipments a, #allProducts a, #allServices a {
+    display: grid;
+    grid-template-columns: 5% repeat(6, minmax(100px, 1fr));
+    place-items: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding: 10px 0px 10px 0px ;
+}
+
+/* ----------- */
+
+/* Mouse Over effect for Tickets/ServiceOrders */
+
+#allTickets a:hover, #allServiceOrder a:hover, #allCostumers a:hover, #allEquipments a:hover, #allProducts a:hover, #allServices a:hover {
+    background-color: rgb(225, 227, 240);
+}
+
+/* SEÇÃO DE COMENTARIOS */
+
+#commentContainerForm form {
+    display: grid;
+    place-items: center;
+    gap: 10px;
+    width: 100%;
+    
+}
+
+#commentContainerForm input {
+    justify-items: end;
+    width: 30%;
+}
+
+#commentContainerForm textarea {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* ----------- */

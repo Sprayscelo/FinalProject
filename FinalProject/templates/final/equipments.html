@@ -1,0 +1,31 @@
+{% extends 'final/layout.html' %}
+
+{%block equipments %}
+
+<h1 class="text-center"> Equipments </h1>
+
+<div id="equipmentsContainer">
+    <div id="equipmentsHeader">
+        <span> ID </span>
+        <span> Costumer </span>
+        <span> Serial Number </span>
+        <span> Phone Operator </span>
+        <span> Plate </span>
+        <span> Product </span>
+        <span> Status </span>
+    </div>
+    {%for equip in allEquipments %}
+    <div id="allEquipments">
+        <a href="" class="btn btn-light">
+            <span> {{ equip.id }} </span>
+            <span> {{ equip.costumer }} </span>
+            <span> {{ equip.serialNumber }}</span>
+            <span> {{ equip.phoneOperator }} </span>
+            <span> {{ equip.plate }} </span>
+            <span> {{ equip.product }}</span>
+            <span> {{ equip.status }} </span>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{%endblock %}

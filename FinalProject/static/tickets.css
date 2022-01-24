@@ -1,0 +1,45 @@
+
+#TicketDetailsForm form  {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));  
+    font-family: 'Dongle', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Playfair Display', serif;
+    font-family: 'Titillium Web', sans-serif;
+    align-items: center;
+    justify-items: center;
+
+}
+
+#ticketDetailsDescription {
+    width: 1fr;
+    grid-column: 1/-1;
+    grid-row: 4/5;
+}
+
+#TicketDetailsForm form * {
+    width: 100%;
+}
+
+#tickeDetailstStatus, #serviceOrderDetailsStatus {
+    border-radius: 5px;
+    margin: 10px 0 10px 0;
+    padding: 6px 12px 6px 12px;
+    min-width: 50px;
+}
+
+#ticketEditSubmit {
+    grid-column: 1/-1;
+    max-width: 30%;
+    text-align: center;
+}
+
+#mainTicketDetailsContainer {
+    margin: 15px;
+}
+
+#ticketDetailsSolution {
+    width: 1fr;
+    grid-column: 1/-1;
+}

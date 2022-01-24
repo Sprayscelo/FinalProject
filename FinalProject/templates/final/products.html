@@ -1,0 +1,31 @@
+{% extends "final/layout.html" %}
+{% block products %}
+
+<h1 class="text-center"> Products </h1>
+
+<div id="productsContainer">
+    <div id="productsHeader">
+        <span> ID </span>
+        <span> Name </span>
+        <span> Serial Number </span>
+        <span> Brand </span>
+        <span> Categorie </span>
+        <span> Producer </span>
+        <span> Create Date </span>
+    </div>
+    {% for product in allProducts %}
+    <div id="allProducts">
+        <a href="" class="btn btn-light">
+            <span> {{ product.id }}</span>
+            <span> {{ product.name }}</span>
+            <span> {{ product.serialNumber }}</span>
+            <span> {{ product.brand }}</span>
+            <span> {{ product.categories }}</span>
+            <span> {{ product.producer }}</span>
+            <span> {{ product.createDate }}</span>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
