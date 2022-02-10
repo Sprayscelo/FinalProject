@@ -1,7 +1,7 @@
 {% extends 'final/layout.html' %}
 
 {%block equipments %}
-
+{% if allEquipments %}
 <h1 class="text-center"> Equipments </h1>
 
 <div id="equipmentsContainer">
@@ -14,18 +14,50 @@
         <span> Product </span>
         <span> Status </span>
     </div>
-    {%for equip in allEquipments %}
+    {%for equipments in allEquipments %}
     <div id="allEquipments">
-        <a href="" class="btn btn-light">
-            <span> {{ equip.id }} </span>
-            <span> {{ equip.costumer }} </span>
-            <span> {{ equip.serialNumber }}</span>
-            <span> {{ equip.phoneOperator }} </span>
-            <span> {{ equip.plate }} </span>
-            <span> {{ equip.product }}</span>
-            <span> {{ equip.status }} </span>
+        <a href="{% url 'equipmentsDetails' equipments.id %}" class="btn btn-light">
+            <span> {{ equipments.id }} </span>
+            <span> {{ equipments.costumer.name }} </span>
+            <span> {{ equipments.serialNumber }}</span>
+            <span> {{ equipments.phoneOperator }} </span>
+            <span> {{ equipments.plate }} </span>
+            <span> {{ equipments.product }}</span>
+            <span> {{ equipments.status }} </span>
         </a>
     </div>
     {% endfor %}
 </div>
+
+{% elif equipmentsDetails %}
+
+<div>
+    <h1 class="text-center"> Equipments </h1>
+
+    <div id="equipmentsDetailsContainer">
+        <div id="equipmentsDetailsForm">
+            <form action="{% url 'equipmentsDetails' equipmentsDetails.id %}" method="POST">
+                <label for=""> Type:
+                    <select name="" id="">
+                        {% for type in equipmentsDetailsCategories %}
+                            <option value="{{ type.1 }}"> {{ type.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label for=""> Costumer:
+                    <select name="" id="">
+                        {% for costumer in Costumers.objects.all %}
+                        <option value="">
+                            {{ costumer }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endif %}
 {%endblock %}

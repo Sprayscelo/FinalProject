@@ -1,9 +1,8 @@
 {% extends 'final/layout.html' %}
-
+{% load static %}
 {%block costumer %}
-
+{% if allCostumers %}
 <h1 class="text-center"> Costumers </h1>
-
 <div id="costumerContainer">
     <div id="costumerHeader">
         <span> ID </span>
@@ -16,7 +15,7 @@
     </div>
     {% for costumer in allCostumers %}
     <div id="allCostumers">
-        <a href="" class="btn btn-light">
+        <a href="{% url 'costumersDetails' costumer.id %}" class="btn btn-light">
             <span> {{ costumer.id }} </span>
             <span> {{ costumer.type }} </span>
             <span> {{ costumer.clientName }} </span>
@@ -28,4 +27,89 @@
     </div>
     {%endfor%}
 </div>
+{% elif costumersDetails %}
+<div>
+    <div>
+        <img src="" alt="">
+        <h1 class="text-center"> {{ costumersDetails.name }}</h1>
+    </div>
+    <div id="costumersDetailsContainer">
+        <div id="costumersDetailsForm">
+            <form action="{% url 'costumersDetails' costumersDetails.id %}" method="POST">
+                {% csrf_token %}
+                <label for=""> Costumer Type
+                    <select class="form-control" name="costumersDetailsType" id="">
+                        {% for type in costumerTypeChoices %}
+                        <option value="{{ costumersDetails.type }}"
+                        {% if type.1 == costumersDetails.type %} selected {% endif%}>
+                            {{ type.1 }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label for=""> Name:
+                    <input class="form-control" type="text" name="costumersDetailsName" id="" value="{{ costumersDetails.name }}">
+                </label>
+                <label for="">Priority:
+                    <select class="form-control" name="costumersDetailsPriority" id="">
+                        {% for priority in priorityChoices %}
+                        <option value="{{ costumersDetails.priority }}"
+                        {% if priority.0 == costumersDetails.priority %} selected {% endif %}>
+                            {{ priority.1 }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label for="">CNPJ:
+                    <input class="form-control" type="number" maxlength="14" name="costumersDetailsCNPJ" id="costumersDetailsCNPJ" value="{{ costumersDetails.CNPJ }}">
+                </label>
+                <label for="">Phone
+                    <input class="form-control" type="number" name="costumersDetailsPhone" id="" value="{{ costumersDetails.phone }}">
+                </label>
+                <label for="">Email:
+                    <input class="form-control" type="email" name="costumersDetailsEmail" id="" value="{{ costumersDetails.email }}">
+                </label>
+                <label for="">State:
+                    <input class="form-control" type="text" name="costumersDetailsState" id="" value="{{ costumersDetails.state }}">
+                </label>
+                <label for="">City
+                    <input class="form-control" type="text" name="costumersDetailsCity" id="" value="{{ costumersDetails.city }}">
+                </label>
+                <label for="">Address:
+                    <input class="form-control" type="" name="costumersDetailsAddress" id="" value="{{ costumersDetails.address }}">
+                </label>
+                <label for="">Z-Code:
+                    <input class="form-control" type="text" name="costumersDetailsZCode" id="" value="{{ costumersDetails.zCode }}">
+                </label>
+                <div id="saveButtonContainer" class="text-center">
+                    <input class="btn btn-warning" type="submit" name="" id="saveButton" value="Save">
+                </div>
+            </form>
+        </div>
+        <section>
+            <div id="commentContainerForm">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                        <textarea class="form-control" name="commentContent" id="commentContent" cols="" rows="2"></textarea>
+                        <input class="btn btn-dark" value="Add Comment" type="submit" name="" id="">
+                </form>
+            </div>
+            <div id="commentContainerAll">
+                {% for comment in costumersDetails.comments.all reversed %}
+                <div>
+                    <p> <strong> {{ comment.user }} </strong></p>
+                    <span> {{ comment.content }}</span>
+                    <div>
+                        <small> {{ comment.createDate|date:"d/m/Y - H:i:s" }}</small>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endif %}
+<link rel="stylesheet" href="{% static 'costumers.css' %}">
+<script src="{% static 'costumers.js' %}"></script>
 {%endblock%}

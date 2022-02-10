@@ -20,9 +20,10 @@ class Comment(models.Model):
 
 class Costumer(models.Model):
     
-    type = models.CharField(max_length=255, choices=clientTypeChoices)
+    type = models.CharField(max_length=255, choices=costumerTypeChoices)
     name = models.CharField(max_length=255, blank=False)
     priority = models.CharField(choices=priorityChoices, default=1, max_length=1)
+    phone = models.CharField(max_length=11, blank=True, null=True)
     CNPJ = models.CharField(blank=False, max_length=14, unique=True)
     email = models.EmailField(max_length=255, blank=False, unique=True)
     createDate = models.DateField(auto_now_add=True)
@@ -123,11 +124,11 @@ class serviceOrder(models.Model):
     description = models.TextField(blank=True)
     costumer = models.ForeignKey(Costumer, on_delete=models.CASCADE)
     plate = models.CharField(max_length=8, default="")
-    comment = models.TextField(blank=True)
     responsible = models.ForeignKey(User, on_delete=models.CASCADE, related_name="osResponsible")
     createDate = models.DateTimeField(auto_now_add=True)
     createdBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name="osCreator")
-    schedule = models.DateTimeField(blank=True)
+    schedule = models.DateTimeField(blank=True, null=True)
+    deliveryDate = models.DateTimeField(blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     relatedTicket = models.ManyToManyField(Ticket, related_name="ticketRelated")
     relatedService = models.ManyToManyField(Service, related_name="serviceRelated")

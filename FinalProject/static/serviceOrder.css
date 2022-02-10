@@ -19,27 +19,19 @@
     margin: 15px;
 }
 
-#serviceContents form {
-    width: 100%;
-}
 
 #serviceContentsSelection {
     display: grid;
-    place-items: center;
-    grid-row: 5/5;
-   
-}
-
-#serviceContentsSelection input {
+    grid-column: 1/1;
     margin-top: 10px;
     max-width: 50%;
+   
 }
 
 #serviceContents {
     display: grid;
-    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    grid-column: 1/2;
     place-items: center;
-    gap: 10px;
 }
 
 #serviceExibition {
@@ -68,4 +60,13 @@
 #serviceExibitionItems span {
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+#saveButtonContainer {
+    grid-column: -1/1;
+    width: 100%;
+}
+
+#saveButtonContainer input {
+    max-width: 20%;
 }

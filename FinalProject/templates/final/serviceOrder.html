@@ -54,7 +54,7 @@
                         <option value="{{ costumer.id }}"
                         {% if costumer.name == serviceOrdersDetails.costumer.name %} selected {% endif%}>
                         {{ costumer.name }}
-                    </option>
+                        </option>
                     {% endfor %}
                 </select>
             </label>
@@ -62,13 +62,13 @@
                 <input class="form-control" type="text" name="serviceOrderDetailsPlate" id="serviceOrderDetailsPlate" value="{{ serviceOrdersDetails.plate }}">
             </label>
             <label id="serviceOrderDetailsDescription" for="serviceOrderDetailsDescription">Description:
-                <textarea name="serviceOrderDetailsDescription" id="serviceOrderDetailsDescription" cols="" rows="2"></textarea>
+                <textarea class="form-control" name="serviceOrderDetailsDescription" id="serviceOrderDetailsDescription" cols="" rows="2">{{ serviceOrdersDetails.description }}</textarea>
             </label>
             <label for=""> Responsible:
-                    <select class="form-select" name="" id="">
+                    <select class="form-select" name="serviceOrderDetailsResponsible" id="">
                         {% for responsible in users %}
                         <option value="{{ responsible.id }}"
-                            {% if responsible.username == serviceOrdersDetails.responsible %}selected{% endif %}>
+                            {% if responsible.username in serviceOrdersDetails.responsible.username %}selected{% endif %}>
                                 {{ responsible.username }}
                         </option>
                         {% endfor%}
@@ -79,54 +79,59 @@
                         <a href="">#{{ relatedTickets.id }}</a>
                     {% endfor%}
                 </label>
-                <label for="">Related Equipments
+                <label for="">Related Equipments:
                     {% for relatedEquipments in serviceOrdersDetails.relatedEquipment.all %}
                     <a href=""> #{{ relatedEquipments.id }}</a>
                     {% endfor%}
                 </label>
-                <label for="">Related Services:
-                    
+                <label  id="serviceOrderDetailsSchedule" for="">
+                    Schedule date:
+                    <input type="datetime-local" name="serviceOrderDetailsSchedule" value="{{ serviceOrdersDetails.schedule|date:'Y-m-d' }}T{{ serviceOrdersDetails.schedule|time:'H:i:s' }}">
+                </label>
+                <label for="">Delivery date:
+                    <input type="datetime-local" name="serviceOrderDetailsDelivery" id="" value="{{ serviceOrdersDetails.deliveryDate|date:'Y-m-d' }}T{{ serviceOrdersDetails.deliveryDate|time:'H:i:s' }}">
+                </label>
+                <label for="">Created Date:
+                    <strong> {{ serviceOrdersDetails.createDate|date:"d/m/Y - H:i:s" }} </strong>
                 </label>
                 <label for="">
-                    Schedule date:
-                    <input type="datetime-local" name="serviceOrderDetailsSchedule">
+                    Created By:
+                    <strong> {{ serviceOrdersDetails.createdBy }} </strong>
                 </label>
-                <input class="btn btn-warning" type="submit" name="" id="" value="Save">
-            </form>
-        </div>
-        <div id="serviceContents">
-            <form action="{% url 'serviceOrdersDetails' serviceOrdersDetails.id %}" method="POST">
-                {% csrf_token %}
-                <select class="form-select" multiple name="serviceContentSelected" id="SelectedServices">
-                    {% for service in allServices %}
-                    <option value="{{ service.id }}"
-                    {% if service in serviceOrdersDetails.relatedService.all%} selected {% endif %}>
-                    {{ service.name }} | Price: {{ service.price }}
-                    </option>
+                <label id="serviceContents" for="">
+                    <select class="form-select" multiple name="serviceContentSelected" id="SelectedServices">
+                        {% for service in allServices %}
+                        <option value="{{ service.id }}"
+                        {% if service in serviceOrdersDetails.relatedService.all%} selected {% endif %}>
+                        {{ service.name }} | Price: {{ service.price }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <div id="serviceExibition">
+                    <div class="text-center" id="serviceExibitionColum">
+                        <span id="serviceExibitionColumInformation">Item Information</span>
+                        <span>Amount</span>
+                        <span>Price</span>
+                    </div>
+                    {% for exibition in serviceOrdersDetails.relatedService.all %}
+                    <div class="text-center" id="serviceExibitionItems">
+                        <a href="" id="serviceExbitionName">{{ exibition.name }}</a>
+                        <span>1</span>
+                        <span>{{ exibition.price }}</span>
+                    </div>
                     {% endfor %}
-                </select>
-                <input type="submit" id="serviceContentsAddServices" class="btn btn-outline-primary" value="Add services">
+                </div>
+                <div id="saveButtonContainer" class="text-center">
+                    <input class="btn btn-warning" type="submit" name="serviceOrderSave" id="saveButton" value="Save">
+                </div>
             </form>
-            <div id="serviceExibition">
-                <div class="text-center" id="serviceExibitionColum">
-                    <span id="serviceExibitionColumInformation">Item Information</span>
-                    <span>Amount</span>
-                    <span>Price</span>
-                </div>
-                {% for exibition in serviceOrdersDetails.relatedService.all %}
-                <div class="text-center" id="serviceExibitionItems">
-                    <a href="" id="serviceExbitionName">{{ exibition.name }}</a>
-                    <span>1</span>
-                    <span>{{ exibition.price }}</span>
-                </div>
-                {% endfor %}
-            </div>
         </div>
         <section>
             <div id="commentContainerForm">
                 <form action="" method="POST">
                     {% csrf_token %}
-                        <textarea name="commentContent" id="commentContent" cols="" rows="2"></textarea>
+                    <textarea class="form-control" name="commentContent" id="commentContent" cols="" rows="2"></textarea>
                     <input class="btn btn-dark" value="Add Comment" type="submit" name="" id="">
                 </form>
             </div>

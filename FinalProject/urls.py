@@ -5,12 +5,12 @@ urlpatterns = [
     path("", views.index, name="default"),
     path("tickets/", include('FinalProject.modulesDetails.ticketsUrls')),
     path("serviceOrder/", include('FinalProject.modulesDetails.serviceOrdersUrls')),
-    path("costumer", views.costumer, name="costumer"),
-    path("equipments", views.equipments, name="equipments"),
-    path("products", views.products, name="products"),
-    path("services", views.services, name="services"),
+    path("costumer/", include('FinalProject.modulesDetails.costumersUrls')),
+    path("equipments/", include('FinalProject.modulesDetails.equipmentsUrls')),
+    path("products/", include('FinalProject.modulesDetails.productsUrls')),
+    path("services/", include('FinalProject.modulesDetails.servicesUrls')),
 
     #API Route
-    path("newTickets", views.newTickets, name="newTickets"),
+    path("newTickets", views.newTicket, name="newTickets"),
     path("newCostumer", views.newCostumer, name="newCostumer"),
 ]

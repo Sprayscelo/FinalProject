@@ -2,6 +2,7 @@
 {% load static %}
 {% block tickets %}
 {% if allTickets %}
+<a class="btn btn-outline-secondary" href="{% url 'newTicket' %}">Open Ticket </a>
 <h1 class="text-center">Tickets Visualization</h1>
 <div id="ticketsContainer">
         <div id="ticketHeader">
@@ -112,7 +113,7 @@
                 <label for=""> Created by: <strong> {{ticketDetails.createdBy}}</strong></label>
                 <span id="ticketDetailsCreatedDate"> Created Date: {{ticketDetails.createDate|date:"d/m/Y - H:i:s"}}</span>
                 <label id="ticketDetailsSolution" for="">Solution
-                    <textarea name="ticketDetailsSolution" id="ticketDetailsSolution" cols="" rows="2">{{ticketDetails.solution}}</textarea>
+                    <textarea class="form-control" name="ticketDetailsSolution" id="ticketDetailsSolution" cols="" rows="2">{{ticketDetails.solution}}</textarea>
                 </label>
                 <label for=""> Ticket ended on: <input id="ticketDetailsEndDate" class="form-control" disabled type="text" value="{{ticketDetails.endDate|date:'d/m/Y H:i:s'}}"></label>
                 <label for="">

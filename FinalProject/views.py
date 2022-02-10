@@ -6,12 +6,19 @@ from .models import *
 from django.http import JsonResponse
 import json
 from .choices import *
-from datetime import datetime
 from django.utils import timezone
 from django.urls import reverse
-from django.core.exceptions import ObjectDoesNotExist
+from django.utils.dateparse import parse_datetime
 
 Users = User.objects.all()
+
+def newComment(request, moduleID, module):
+   if "commentContent" in request.POST:
+         newComment = Comment(user=request.user, content=request.POST.get("commentContent", False))
+         newComment.save()
+         CommentLink = module.objects.get(id=moduleID)
+         CommentLink.comments.add(newComment)
+         CommentLink.save()
 
 def index(request):
    return render(request, "final/index.html")
@@ -26,17 +33,11 @@ def ticketDetails(request, ticketID):
    if request.method == "PUT":
       data = json.loads(request.body)
       Ticket.objects.filter(id=ticketID).update(status=data["newStatus"])
-      # Ticket.objects.filter(id=ticketID).update(status=request.POST["newStatus"])
-      # if "Closed" in request.POST["newStatus"] and ticketDetails.status != "Closed":
-      #    Ticket.objects.filter(id=ticketID).update(endDate=timezone.now())
-      # if request.POST["newStatus"] != "Closed" and ticketDetails.status == "Closed":
-      #    Ticket.objects.filter(id=ticketID).update(endDate=None)
-   if "commentContent" in request.POST:
-      newComment = Comment(user=request.user, content=request.POST.get("commentContent", False))
-      newComment.save()
-      ticketCommentLink = Ticket.objects.get(id=ticketID)
-      ticketCommentLink.comments.add(newComment)
-      ticketCommentLink.save()
+      if "Closed" in data["newStatus"] and ticketDetails.status != "Closed":
+         Ticket.objects.filter(id=ticketID).update(endDate=timezone.now())
+      if data["newStatus"] != "Closed" and ticketDetails.status == "Closed":
+         Ticket.objects.filter(id=ticketID).update(endDate=None)
+   newComment(request, ticketID, Ticket)
    if "ticketDetailsSubmit" in request.POST:
       Ticket.objects.filter(id=ticketID).update(
          tittle=request.POST["ticketDetailsTittle"],
@@ -73,11 +74,21 @@ def servicesOrder(request):
 
 def serviceOrdersDetails(request, serviceOrderID):
    serviceOrderDetails = serviceOrder.objects.get(id=serviceOrderID)
-   
+   newComment(request, serviceOrderID, serviceOrder)
    if request.method == "PUT":
       data = json.loads(request.body)
       serviceOrder.objects.filter(id=serviceOrderID).update(status=data["newStatus"])
-   
+      
+   if request.method == "POST":
+      serviceOrderDetails.costumer = Costumer.objects.get(id=request.POST["serviceOrderDetailsCostumer"]) 
+      serviceOrderDetails.tittle = request.POST["serviceOrderDetailsTittle"]
+      serviceOrderDetails.plate = request.POST["serviceOrderDetailsPlate"]
+      serviceOrderDetails.responsible = User.objects.get(id=request.POST["serviceOrderDetailsResponsible"]) 
+      serviceOrderDetails.description = request.POST["serviceOrderDetailsDescription"]
+      serviceOrderDetails.schedule = parse_datetime(request.POST["serviceOrderDetailsSchedule"])
+      serviceOrderDetails.deliveryDate = parse_datetime(request.POST["serviceOrderDetailsDelivery"])
+      serviceOrderDetails.save()
+
    if "serviceContentSelected" in request.POST:
       data = request.POST.getlist("serviceContentSelected")
       serviceOrderDetails.relatedService.clear()
@@ -93,12 +104,35 @@ def serviceOrdersDetails(request, serviceOrderID):
       "serviceOrdersStatusChoices": statusOsChoices,
       "allCostumers": Costumer.objects.all(),
       "users": Users,
-      "allServices": [svc for svc in Service.objects.all()],
+      "allServices": [svc for svc in Service.objects.all()]
    })
 
 def costumer(request):
    return render(request, "final/costumer.html", {
-      "allCostumers": Costumer.objects.all()
+      "allCostumers": Costumer.objects.all(),
+   })
+
+def costumerDetails(request, costumerID):
+   newComment(request, costumerID, Costumer)
+   if request.method == "POST":
+      Costumer.objects.filter(id=costumerID).update(
+         type=request.POST.get("costumersDetailsType",""),
+         name=request.POST.get("costumersDetailsName",""),
+         priority=request.POST.get("costumerDetailsPriority",""),
+         phone=request.POST.get("costumersDetailsPhone",""),
+         CNPJ=request.POST.get("costumersDetailsCNPJ",""),
+         email=request.POST.get("costumersDetailsEmail",""),
+         state=request.POST.get("costumersDetailsState",""),
+         city=request.POST.get("costumersDetailsCity",""),
+         address=request.POST.get("costumersDetailsAddress",""),
+         zCode=request.POST.get("costumersDetailsZCode",""),
+         )
+
+
+   return render(request, "final/costumer.html", {
+      "costumersDetails": Costumer.objects.get(id=costumerID),
+      "costumerTypeChoices": costumerTypeChoices,
+      "priorityChoices": priorityChoices
    })
 
 def equipments(request):
@@ -106,19 +140,41 @@ def equipments(request):
       "allEquipments": Equipment.objects.all()
    })
 
+def equipmentsDetails(request, equipmentID):
+   
+   return render(request, "final/equipments.html", {
+      "equipmentsDetails": Equipment.objects.get(id=equipmentID),
+      "equipmentsDetailsCategories": equipmentCategoriesChoices
+   })
+
 def products(request):
    return render(request, "final/products.html", {
       "allProducts": Product.objects.all()
    })
 
+def productsDetails(request, productID):
+   
+   return render(request, "final/products.html", {
+      "productsDetails": Product.objects.get(id=productID)
+   })
+   
+
 def services(request):
    return render(request, "final/services.html", {
       "allServices": Service.objects.all()
    })
+   
+
+def servicesDetails(request, serviceID):
+   
+   return render(request, "final/products.html", {
+      "serviceDetails": Service.objects.get(id=serviceID)
+      
+   })
 
 #API Route Functions
 
-def newTickets(request):
+def newTicket(request):
    return 0
 
 def newCostumer(request):

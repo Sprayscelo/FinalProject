@@ -11,7 +11,7 @@ priorityChoices = [
 
 # Tipo de cliente, Pessoa Fisica ou Juridica
 
-clientTypeChoices = [
+costumerTypeChoices = [
 
     ("Company Costumer", "Company Costumer"),
     ("Physical Costumer", "Physical Costumer")
