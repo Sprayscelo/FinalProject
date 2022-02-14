@@ -1,0 +1,224 @@
+{% extends 'final/layout.html' %}
+
+{% load static %}
+
+{% block newTicket%}
+<div id="newTicketMainContainer">
+    <div class="text-center">
+        <h1 class="text-center">Abrir novo chamado</h1>
+        <p> Antes de abrir o chamado, tenha ciencia de que quanto mais informações você colocar, mais rapido será atendido.</p>
+        <h2><strong>Para prosseguir, favor preencha as informações abaixo </strong></h2>
+        <form action="">
+    </div>
+    <br>
+        <div class="text-center mainFormDiv">
+            <div>
+                <label class="text-center" for=""> Por favor, selecione a categoria relacionada a sua solicitação!
+                    <select data-selected="" class="form-control" name="" id="newTicketSelectOptions">
+                        <optgroup label="Nivel 1">
+                            <option class="DefaultOption" selected value="">Selecione uma opção</option>
+                            <option value="1">Alteração/correção de placa</option>
+                            <option value="2">Alteração/correção de descricao</option>
+                            <option value="3">Relatorio de jornada de Motorista</option>
+                            <option value="4">Alteração de meta de consumo </option>
+                            <option value="5">Criação de usuario</option>
+                            <option value="6">Bloqueio de usuario</option>
+                            <option value="7">Veiculo sem comunicação</option>
+                        </optgroup>
+                        <optgroup label="Nivel 2">
+                            <option value="8"> Treinamento </option>
+                            <option value="9"> Problemas com relatorio </option>
+                            <option value="10"> Sem leitura de dados </option>
+                            <option value="11"> Procedimentos internos </option>
+                            <option value="12"> Solicitação de material de apoio </option>
+                        </optgroup>
+                        <optgroup label="Nivel 3">
+                            <option value="13"> Teste de CAN </option>
+                            <option value="14"> Problemas de registro de passageiro </option>
+                            <option value="15"> Analise de eventos </option>
+                            <option value="16"> Problemas de configuração </option>
+                            <option value="17"> Validacao de eventos </option>
+                            <option value="18"> Veiculo apitando </option>
+                            <option value="19"> Alteracao de evento</option>
+                            <option value="20"> Liberacao de veiculo</option>
+                        </optgroup>
+                    </select>
+                </label>
+            </div>
+            <div class="newTicketOptionsContent">
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+    <div hidden id="newTicketAlteracaoPlacaContainer" class="text-center newTicket-option-selected">
+        <div class="text-center newTicketAlteracaoPlaca">
+            <label for="">Informe a placa:
+                <input class="form-control" type="text" name="" id="">
+            </label>
+            <label for="">Informe a nova placa: 
+                <input class="form-control" type="text" name="" id="">
+            </label>
+            <label for=""> Informacoes Adicionais (Opcional)
+                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+            </label>
+            <input class="btn btn-success Abrir-chamado" type="submit" name="" id="" value="Abrir chamado">
+        </div>
+    </div>
+    
+    <div hidden id="newTicketAlteracaoDescricaoContainer" class="text-center newTicket-option-selected">
+        <div class="newTicketAlteracaoDescricao">
+            <label for="">Informe a descriçao atual:
+                <input class="form-control" type="text" name="" id="" >
+            </label>
+            <label for="">
+                Informe a nova descricao:
+                <input class="form-control" placeholder="Ex: Modelo do veiculo - Placa" type="text" name="" id="">
+            </label>
+            <label for="">
+                Informações adicionais (Opcional)
+                <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+            </label>
+            <label for="">
+                Caso a alteração se trata de grande quantidade, você pode anexar um arquivo!
+                <input class="form-control" type="file" name="" id="">
+            </label>
+            <input class="btn btn-success Abrir-chamado" type="text" name="" id="" value="Abrir chamado">
+        </div>
+    </div>
+    
+    <div hidden id="newTicketJornadaContainer" class="text-center newTicket-option-selected">
+        <div class="newTicketJornada">
+            <label for="">
+                Por favor informe o nome do motorista desejado!
+                <input class="form-control" type="text" name="" id="">
+            </label>
+            <div>
+                <!-- <span style="display: block;">Por favor informe o periodo:</span> -->
+                <label for="">
+                    <span>De:<input class="form-control" type="date"></span>
+                </label>
+                <label for="">
+                    <span>Até: <input class="form-control" type="date" name="" id=""></span>
+                </label>
+            </div>
+            <div>
+                <label for="">
+                    O relatório deve ser dividio por:
+                    <select class="form-select" name="" id="">
+                        <option value="Mês">Mês</option>
+                        <option value="Ano">Ano</option>
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label for="">
+                    Informações adicionais (Opcional)
+                    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div hidden id="newTicketAlteracaoMetaConsumoContainer" class="text-center newTicket-option-selected">
+        <div id="newTicketAlteracaoMetaConsumo">
+            <label for="">
+                Informe o veiculo que deseja alterar a meta:
+                <input class="form-control" type="text" name="" id="">
+            </label>
+            <label for="">
+                Informe a meta desejada:
+                <input class="form-control" type="number" name="" id="">
+            </label>
+            <label for="">
+                Caso a alteração se trata de grande quantidade, você pode anexar um arquivo!
+                <input class="form-control" type="file" name="" id="">
+            </label>
+        </div>
+    </div>
+    
+    <div hidden id="newTicketCriacaoUsuarioContainer" class="text-center newTicket-option-selected">
+        <div id="newTicketCriacaoUsuario">
+            <label for="">
+                Nome completo:
+                <input class="form-control" type="text" name="" id="">
+            </label>
+            <label for="">
+                E-mail:
+                <input class="form-control" type="email" name="" id="">
+            </label>
+            <label for="">
+                Plataforma:
+                <select class="form-select" name="" id="">
+                    <option value=""> Getrak </option>
+                    <option value=""> Mix telematics</option>
+                    <option value=""> App Wikidados </option>
+                    <option value=""> Cameras Wikidados </option>
+                </select>
+            </label>
+            <label for="">
+                Quais garagens/veiculo este usuario pode visualizar?
+                <input class="form-control" type="text" name="" id="">
+            </label>
+            <label for="">
+                Copiar permissão de:
+                <select class="form-select" name="newTicketUsuariosEmpresa" id="">
+                    <option value=""></option>
+                </select>
+            </label>
+        </div>
+    </div>
+    
+    <div hidden id="newTicketBloqueioUsuarioContainer" class="text-center newTicket-option-selected">
+        <div id="newTicketBloqueioUsuario">
+            <label for="">
+                E-mail: <input class="form-control" type="email" name="" id="">
+            </label>
+            <label for="">
+                Motivo (Opcional): <input class="form-control" type="text" name="" id="">
+            </label>
+        </div>
+    </div>
+    
+    <div hidden id="newTicketVeiculoComunicacaoContainer" class="text-center newTicket-option-selected">
+        <div id="newTicketVeiculoComunicacao">
+            <label for="">
+                Placa/chassi: <input class="form-control" type="text" name="" id="">
+            </label>
+            <div>
+                <label> Veiculo foi utilizado após a ultima data de comunicação?
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <label class="form-check-label" for="inlineRadio1">Sim</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">Não</label>
+                    </div>
+                </label> 
+            </div>
+            <div>
+                <label> Seu veiculo passou por alguma mecanica, auto-eletrica ou qualquer tipo de manutenção recentemente?
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <label class="form-check-label" for="inlineRadio1">Sim</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">Não</label>
+                    </div>
+                </label> 
+            </div>
+            <div>
+                <label for=""> Informações adicionais:
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </label>
+            </div>
+        </div>
+    </div>
+
+<link rel="stylesheet" href="{% static 'tickets.css' %}">
+<script src="{% static 'tickets.js' %}"></script>
+{% endblock %}
