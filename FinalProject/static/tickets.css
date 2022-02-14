@@ -43,3 +43,70 @@
     width: 1fr;
     grid-column: 1/-1;
 }
+
+/* NEW TICKET SECTION */
+.mainFormDiv {
+    display: grid;
+    place-items: center;
+    grid-template-columns: minmax(150px,1fr);
+}
+
+.newTicketOptionsContent {
+    display: grid;
+    place-items: center;
+}
+/* ALTERACAO DE PLACA  */
+
+.newTicketAlteracaoPlaca {
+    display: grid;
+    width: 50%;
+    grid-template-columns: repeat(2, minmax(250px, 600px));
+    gap: 10px;
+}
+
+.newTicketAlteracaoPlaca label {
+    position: relative;
+}
+
+.newTicketAlteracaoPlaca label:last-of-type {
+    grid-column: 1/-1;
+}
+
+.Abrir-chamado  {
+    grid-column: 1/-1;
+    width: 50%;
+    transform: translateX(50%);
+    align-self: center;
+}
+
+/*  */
+
+/* ALTERACAO DE DESCRICAO */
+
+.newTicketAlteracaoDescricao {
+    display: grid;
+    gap: 10px;
+    width: 100%;
+}
+
+/*  */
+
+/* JORNADA */
+
+.newTicketJornada {
+    display: grid;
+    width: 100%;
+    gap: 10px;
+}
+
+.newTicketJornada label, .newTicketJornada div {
+    width: 100%;
+}
+
+.newTicketJornada div:first-of-type {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+/*  */

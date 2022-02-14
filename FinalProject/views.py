@@ -172,19 +172,8 @@ def servicesDetails(request, serviceID):
       
    })
 
-#API Route Functions
-
 def newTicket(request):
-   return 0
+   return render(request, "final/newTicket.html")
 
 def newCostumer(request):
    return 0
-
-def ticketsAPI(request, ticketID):
-   try:
-      ticket = Ticket.objects.get(pk=ticketID)
-   except Ticket.DoesNotExist:
-      return JsonResponse({"error": "Ticket not found."}, status=404)
-
-   if request.method == "GET":
-      return JsonResponse(ticket.serialize())

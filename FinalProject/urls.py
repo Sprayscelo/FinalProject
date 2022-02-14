@@ -11,6 +11,5 @@ urlpatterns = [
     path("services/", include('FinalProject.modulesDetails.servicesUrls')),
 
     #API Route
-    path("newTickets", views.newTicket, name="newTickets"),
     path("newCostumer", views.newCostumer, name="newCostumer"),
 ]

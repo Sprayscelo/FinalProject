@@ -20,6 +20,7 @@ const csrftoken = getCookie('csrftoken');
 /* -----  */
 
 document.addEventListener("DOMContentLoaded", e => {
+    let classChanger = document.querySelectorAll("input")
     let statusIDs = ["serviceOrderDetailsStatus", "ticketDetailstStatus"]
     for (sts of statusIDs) {
         statusSelected(sts)
@@ -30,9 +31,7 @@ document.addEventListener("DOMContentLoaded", e => {
     let allStatus = [allTicketStatus, allServiceOrderStatus]
 
     for (i of allStatus) {
-        console.log(i)
         i.forEach(element => {
-            console.log(element)
             element.addEventListener("click", e => {
                 fetch(``, {
                     method: "PUT",
@@ -84,3 +83,19 @@ function statusSelected(id){
         });
         
 }
+
+function transition() {
+    const navBarContainer = document.querySelector(".mainNavContainer")
+    let menu_icon = document.querySelector(".menu-icon")
+    if (navBarContainer.dataset.menu === "closed") {
+        navBarContainer.dataset.menu = "open"
+        menu_icon.innerText = "segment"
+        menu_icon.dataset.status = "open"
+    }
+    else {
+        navBarContainer.dataset.menu = "closed"
+        menu_icon.innerText = "menu"
+        menu_icon.dataset.status = "closed"
+    }
+}
+

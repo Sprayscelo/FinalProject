@@ -8,22 +8,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="{% static 'javascript.js' %}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>CRM WIKI</title>
 </head>
 <body>
-    <nav>
+    <header id="mainHeader">
+        <span data-status="closed" onclick="transition()" class="material-icons menu-icon"> menu </span>
+        <span class="text-center"> <strong> Usuario </strong>, Bem-vindo ao portal wikidados</span>
+    </header>
+    <div data-menu="closed" class="mainNavContainer">
         <div class="navContainer">
-            <a id="anchorTickets" class="btn btn-success" href="{% url 'tickets' %}">Tickets</a>
-            
-
-            <a id="anchorServiceOrder" class="btn btn-success" href="{% url 'serviceOrder' %}">Services Orders</a>
-            <a class="btn btn-success" href="{% url 'costumer' %}">Costumers</a>
-            <a class="btn btn-success" href="{% url 'equipments' %}">Equipments</a>
-            <a class="btn btn-success" href="{% url 'products' %}">Products</a>
-            <a class="btn btn-success" href="{% url 'services' %}">Services</a>
+            <a id="anchorTickets" class="" href="{% url 'tickets' %}">
+                <div>
+                    <span class="material-icons">
+                        sell
+                    </span>
+                    <span>
+                        Chamados
+                    </span>
+                </div>
+            </a>
+            <a id="anchorServiceOrder" class="" href="{% url 'serviceOrder' %}">
+                <div>
+                    <span class="material-icons">
+                        view_list
+                    </span>
+                    <span>
+                        Pedidos de vendas
+                    </span>
+                </div>
+            </a>
+            <a class="" href="{% url 'costumer' %}">
+                <div>
+                    <span class="material-icons">
+                        corporate_fare
+                    </span>
+                    <span>
+                        Clientes
+                    </span>
+                </div>
+            </a>
+            <a class="" href="{% url 'equipments' %}">
+                <div>
+                    <span class="material-icons">
+                    dvr
+                    </span>
+                    <span>
+                        Ativos
+                    </span>
+                </div>
+            </a>
+            <a class="" href="{% url 'products' %}">
+                <div>
+                    <span class="material-icons">
+                        storage
+                    </span>
+                    <span>
+                        Produtos
+                    </span>
+                </div>
+            </a>
+            <a class="" href="{% url 'services' %}">
+                <div>
+                    <span class="material-icons">
+                        construction
+                    </span>
+                    <span>
+                        Serviços
+                    </span>
+                </div>
+            </a>
+            <a href="">
+                <div>
+                    <span class="material-icons">
+                        note_alt
+                    </span>
+                    <span>
+                        Contratos
+                    </span>
+                </div>
+            </a>
         </div>
-    </nav>
+    </div>
     <div id="LayoutContainer">
         {%block main %}
         {%endblock%}

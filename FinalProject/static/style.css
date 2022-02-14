@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle&family=Nunito+Sans:wght@200&family=Playfair+Display&family=Titillium+Web&display=swap');
 body{
     margin: 0%;
+    background-color: #74b3ce;
 }
+
 * {
     font-family: 'Dongle', sans-serif;
     font-family: 'Nunito Sans', sans-serif;
@@ -9,24 +11,92 @@ body{
     font-family: 'Titillium Web', sans-serif;
 }
 
+#mainHeader {
+    background-color: #004346;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+
+}
+
+header span {
+    color: #09bc8a;
+    position: relative;
+    margin: 10px;
+}
+
+img {
+    display: inline-block;
+    width: 120px;
+    height: 120px ;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Menu Bar */
 .navContainer {
     display: grid;
-    grid-template-columns:repeat(6, 1fr);
-    place-items: center;
-    gap: 20px;
-    padding: 10px;
+    gap: 5px;
+    width: 200px;
+    margin-top: 10px;
+    justify-content: baseline;
+    z-index: 1;
 }
 
 .navContainer a {
+    color: #09bc8a;
+    font-weight: bold;
     width: 100%;
     padding: 5px;
+    position: relative;
+    text-decoration: none;
+    z-index: 1;
 }
 
-nav {
-    background-color: rgb(14, 148, 14);
+.navContainer a * {
+    vertical-align: middle;
+}
+
+
+.mainNavContainer {
+    background-color: #004346;
+    position: absolute;
+    height: 100%;
+}
+
+[data-menu="closed"] {
+    transform: translateX(-100%);
+    transition: .3s ease-out
+}
+
+[data-menu="open"] {
+    transform: translateX(0%);
+    transition: .3s ease-out ;
+}
+
+
+.navContainer div:hover {
+    background-color: #508991;
+    color: black;
     position: relative;
-    height: 5%;
+    width: 100%;
+    transform: scale(1.05);
+    transition: 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
+
+.navContainer a div {
+    padding: 10px;
+}
+
+.navContainer a div > span {
+    margin-right: 5px;
+}
+
+.menu-icon {
+    z-index: 2;
+    width: max-content;
+    cursor: pointer;
 }
 
 /* Tickets/ServiceOrders Headers */
@@ -36,8 +106,8 @@ nav {
     grid-template-columns: 5% repeat(6, minmax(100px, 1fr));
     place-items: center;
     margin-bottom: 5px;
-    background-color: green;
-    color: white;
+    background-color: #004346;
+    color: #09bc8a;
     font-weight: bold;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -52,7 +122,9 @@ nav {
     padding-bottom: 5px;
     padding-top: 5px;
     padding: 10px 0px 10px 0px ;
+    
 }
+
 
 /* ----------- */
 
@@ -83,7 +155,3 @@ nav {
 }
 
 /* ----------- */
-
-#anchorTickets {
-    
-}
