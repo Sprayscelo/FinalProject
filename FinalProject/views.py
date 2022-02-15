@@ -64,7 +64,6 @@ def ticketDetails(request, ticketID):
       "ticketAnalyzedItens": AnalyzedItens,
       "ticketGroup": ticketGroup,
       "allCostumers": Costumer.objects.all(),
-      "ticketDetailsScore":int(ticketDetails.priority) + int(ticketDetails.costumer.priority),
       })
 
 def servicesOrder(request):

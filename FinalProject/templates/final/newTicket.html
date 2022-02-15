@@ -95,8 +95,7 @@
                 Por favor informe o nome do motorista desejado!
                 <input class="form-control" type="text" name="" id="">
             </label>
-            <div>
-                <!-- <span style="display: block;">Por favor informe o periodo:</span> -->
+            <div class="newTicketJornadaData">
                 <label for="">
                     <span>De:<input class="form-control" type="date"></span>
                 </label>
@@ -105,13 +104,15 @@
                 </label>
             </div>
             <div>
-                <label for="">
-                    O relatório deve ser dividio por:
-                    <select class="form-select" name="" id="">
-                        <option value="Mês">Mês</option>
-                        <option value="Ano">Ano</option>
-                    </select>
-                </label>
+                <span style="display: block;">Relatorio deve ser separado por:</span>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Mês</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Ano</label>
+                </div>
             </div>
             <div>
                 <label for="">
@@ -123,24 +124,29 @@
     </div>
     
     <div hidden id="newTicketAlteracaoMetaConsumoContainer" class="text-center newTicket-option-selected">
-        <div id="newTicketAlteracaoMetaConsumo">
-            <label for="">
-                Informe o veiculo que deseja alterar a meta:
-                <input class="form-control" type="text" name="" id="">
-            </label>
-            <label for="">
-                Informe a meta desejada:
-                <input class="form-control" type="number" name="" id="">
-            </label>
+        <div class="newTicketAlteracaoMetaConsumo">
+            <div class="newTicketAlteracaoMetaConsumoVeiculoInfo">
+                <label class="" for="">
+                    Placa do veiculo:
+                    <input class="form-control" type="text" name="" id="">
+                </label>
+                <label for="">
+                    Informe a meta desejada:
+                    <input class="form-control" type="number" name="" id="">
+                </label>
+            </div>
             <label for="">
                 Caso a alteração se trata de grande quantidade, você pode anexar um arquivo!
                 <input class="form-control" type="file" name="" id="">
+            </label>
+            <label for="">Informações adicionais:
+                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
             </label>
         </div>
     </div>
     
     <div hidden id="newTicketCriacaoUsuarioContainer" class="text-center newTicket-option-selected">
-        <div id="newTicketCriacaoUsuario">
+        <div class="newTicketCriacaoUsuario">
             <label for="">
                 Nome completo:
                 <input class="form-control" type="text" name="" id="">
@@ -149,7 +155,7 @@
                 E-mail:
                 <input class="form-control" type="email" name="" id="">
             </label>
-            <label for="">
+            <!-- <label for="">
                 Plataforma:
                 <select class="form-select" name="" id="">
                     <option value=""> Getrak </option>
@@ -157,7 +163,26 @@
                     <option value=""> App Wikidados </option>
                     <option value=""> Cameras Wikidados </option>
                 </select>
-            </label>
+            </label> -->
+            <div class="newTicketCriacaoUsuarioPlataformas">
+                <p>Plataforma</p>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Mix Telematics</label>
+                </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">App Wikidados</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox3">Getrak</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                    <label class="form-check-label" for="inlineCheckbox3">Cameras Wikidados</label>
+                </div>
+            </div>
             <label for="">
                 Quais garagens/veiculo este usuario pode visualizar?
                 <input class="form-control" type="text" name="" id="">
@@ -172,18 +197,37 @@
     </div>
     
     <div hidden id="newTicketBloqueioUsuarioContainer" class="text-center newTicket-option-selected">
-        <div id="newTicketBloqueioUsuario">
+        <div class="newTicketBloqueioUsuario">
             <label for="">
                 E-mail: <input class="form-control" type="email" name="" id="">
             </label>
+            <div class="newTicketBloqueioUsuarioPlataformas">
+                <p>Plataforma</p>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Mix Telematics</label>
+                </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">App Wikidados</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox3">Getrak</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                    <label class="form-check-label" for="inlineCheckbox3">Cameras Wikidados</label>
+                </div>
+            </div>
             <label for="">
-                Motivo (Opcional): <input class="form-control" type="text" name="" id="">
+                Motivo (Opcional): <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
             </label>
         </div>
     </div>
     
     <div hidden id="newTicketVeiculoComunicacaoContainer" class="text-center newTicket-option-selected">
-        <div id="newTicketVeiculoComunicacao">
+        <div class="newTicketVeiculoComunicacao">
             <label for="">
                 Placa/chassi: <input class="form-control" type="text" name="" id="">
             </label>
@@ -200,7 +244,8 @@
                 </label> 
             </div>
             <div>
-                <label> Seu veiculo passou por alguma mecanica, auto-eletrica ou qualquer tipo de manutenção recentemente?
+                <label>
+                    <p>Seu veiculo passou por alguma mecanica, auto-eletrica ou qualquer tipo de manutenção recentemente?                    </p> 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
                         <label class="form-check-label" for="inlineRadio1">Sim</label>
@@ -213,7 +258,7 @@
             </div>
             <div>
                 <label for=""> Informações adicionais:
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
                 </label>
             </div>
         </div>

@@ -54,6 +54,8 @@
 .newTicketOptionsContent {
     display: grid;
     place-items: center;
+    position: relative;
+    width: 100%;
 }
 /* ALTERACAO DE PLACA  */
 
@@ -86,7 +88,7 @@
 .newTicketAlteracaoDescricao {
     display: grid;
     gap: 10px;
-    width: 100%;
+    width: 50%;
 }
 
 /*  */
@@ -94,19 +96,68 @@
 /* JORNADA */
 
 .newTicketJornada {
-    display: grid;
-    width: 100%;
-    gap: 10px;
+    width: 50%;
 }
 
-.newTicketJornada label, .newTicketJornada div {
+.newTicketJornada label {
     width: 100%;
+    position: relative;
 }
 
-.newTicketJornada div:first-of-type {
+.newTicketJornadaData{
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr;
+}
+
+/*  */
+
+/* META DE CONSUMO */
+
+.newTicketAlteracaoMetaConsumo {
+    display: grid;
+    position: relative;
+    width: fit-content;
+    gap: 15px;
+    z-index: -1;
+}
+
+.newTicketAlteracaoMetaConsumoVeiculoInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    position: relative;
+}
+
+/*  */
+
+/* CRIACAO DE USUARIO */
+
+.newTicketCriacaoUsuario {
+    display: grid;
+    position: relative;
+    width: fit-content;
+}
+
+/*  */
+
+
+/* BLOQUEIO DE USUARIO */
+
+.newTicketBloqueioUsuario {
+    width: fit-content;
+}
+
+.newTicketBloqueioUsuario label {
+    width: 100%;
+}
+
+/*  */
+
+/* VEICULO SEM COMUNICACAO */
+
+.newTicketVeiculoComunicacao {
+    display: grid;
 }
 
 /*  */

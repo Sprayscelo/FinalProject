@@ -56,7 +56,7 @@ function newTicket(element) {
                 break
 
                 case 7:
-                    ticketOptionsContent.innerHTML = document.querySelector("#newTicketVeiculoComunicacao").innerHTML
+                    ticketOptionsContent.innerHTML = document.querySelector("#newTicketVeiculoComunicacaoContainer").innerHTML
                 break
                 
             }

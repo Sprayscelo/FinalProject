@@ -118,7 +118,7 @@
                 <label for=""> Ticket ended on: <input id="ticketDetailsEndDate" class="form-control" disabled type="text" value="{{ticketDetails.endDate|date:'d/m/Y H:i:s'}}"></label>
                 <label for="">
                     Ticket Score:
-                    <input class="form-control" disabled type="text" name="ticketDetailsScore" id="" value="{{ticketDetailsScore}}">
+                    <input class="form-control" disabled type="text" name="ticketDetailsScore" id="" value="{{ticketDetails.score}}">
                 </label>
                 <input type="submit" class="btn btn-warning text-center form-control" value="Save" id="ticketEditSubmit" name="ticketDetailsSubmit">
             </form>
