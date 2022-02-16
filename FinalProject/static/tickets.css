@@ -158,6 +158,26 @@
 
 .newTicketVeiculoComunicacao {
     display: grid;
+    gap: 15px;
+
 }
+
+.newTicketInfoAdicional {
+    position: relative;
+}
+
+.newTicketVeiculoComunicacaoPlacaChassi {
+    width: 65%;
+}
+
+/*  */
+
+/* TREINAMENTO */
+
+.newTicketTreinamento {
+    display: grid;
+    gap: 15px;
+}
+
 
 /*  */

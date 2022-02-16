@@ -60,6 +60,8 @@ function newTicket(element) {
                     ticketOptionsContent.innerHTML = document.querySelector("#newTicketVeiculoComunicacaoContainer").innerHTML
                 break
                 
+                case 8: ticketOptionsContent.innerHTML = document.querySelector("#newTicketTreinamentoContainer").innerHTML
+                break
             }
         }
         else{

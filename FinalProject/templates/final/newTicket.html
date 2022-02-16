@@ -155,15 +155,6 @@
                 E-mail:
                 <input class="form-control" type="email" name="" id="">
             </label>
-            <!-- <label for="">
-                Plataforma:
-                <select class="form-select" name="" id="">
-                    <option value=""> Getrak </option>
-                    <option value=""> Mix telematics</option>
-                    <option value=""> App Wikidados </option>
-                    <option value=""> Cameras Wikidados </option>
-                </select>
-            </label> -->
             <div class="newTicketCriacaoUsuarioPlataformas">
                 <p>Plataforma</p>
                 <div class="form-check form-check-inline">
@@ -190,7 +181,11 @@
             <label for="">
                 Copiar permissão de:
                 <select class="form-select" name="newTicketUsuariosEmpresa" id="">
-                    <option value=""></option>
+                    {% for user in Users%}
+                    <option value="">
+                        {{ user }}
+                    </option>
+                    {% endfor%}
                 </select>
             </label>
         </div>
@@ -228,17 +223,20 @@
     
     <div hidden id="newTicketVeiculoComunicacaoContainer" class="text-center newTicket-option-selected">
         <div class="newTicketVeiculoComunicacao">
-            <label for="">
-                Placa/chassi: <input class="form-control" type="text" name="" id="">
-            </label>
             <div>
-                <label> Veiculo foi utilizado após a ultima data de comunicação?
+                <label for="" class="newTicketVeiculoComunicacaoPlacaChassi text-center">
+                    Placa/chassi: <input class="form-control " type="text" name="" id="">
+                </label>
+            </div>
+            <div>
+                <label> 
+                    <p> Veiculo foi utilizado após a ultima data de comunicação? </p> 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <input class="form-check-input" type="radio" name="newTicketVeiculoUtilizado" id="inlineRadio1" value="option1">
                         <label class="form-check-label" for="inlineRadio1">Sim</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="newTicketVeiculoUtilizado" id="inlineRadio2" value="option2">
                         <label class="form-check-label" for="inlineRadio2">Não</label>
                     </div>
                 </label> 
@@ -247,20 +245,113 @@
                 <label>
                     <p>Seu veiculo passou por alguma mecanica, auto-eletrica ou qualquer tipo de manutenção recentemente?                    </p> 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <input class="form-check-input" type="radio" name="newTicketVeiculoMecanica" id="inlineRadio1" value="option1">
                         <label class="form-check-label" for="inlineRadio1">Sim</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input checked" type="radio" name="newTicketVeiculoMecanica" id="inlineRadio2" value="option2">
                         <label class="form-check-label" for="inlineRadio2">Não</label>
                     </div>
                 </label> 
             </div>
             <div>
                 <label for=""> Informações adicionais:
-                    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                    <textarea class="form-control newTicketInfoAdicional" name="" id="" cols="50" rows="5"></textarea>
                 </label>
             </div>
+        </div>
+    </div>
+
+    <div hidden id="newTicketTreinamentoContainer">
+        <div class="newTicketTreinamento">
+            <label for="">
+                Sugerir data do treinamento (Sujeito a alteração) <input class="form-control" type="datetime-local" name="" id="">
+            </label>
+            <label for="">
+                <div>
+                    <p>Plataforma</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">Mix Telematics</label>
+                    </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox2">App Wikidados</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <label class="form-check-label" for="inlineCheckbox3">Getrak</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                        <label class="form-check-label" for="inlineCheckbox3">Cameras Wikidados</label>
+                    </div>
+                </div>
+            </label>
+            <label for="">
+                Informações adicionais:
+                <textarea class="form-control" name="" id="" cols="50" rows="5"></textarea>
+            </label>
+        </div>
+    </div>
+
+    <div id="newTicketProblemasRelatorioContainer">
+        <div class="newTicketProblemasRelatorio">
+            <label for="">
+                <select name="" id="">
+                    <optgroup label="Relatórios de custo">
+                        <option value="">Relatório de custo por distancia</option>
+                        <option value="">Relatório de historico de serviços</option>
+                    </optgroup>
+                    <optgroup label="Painéis">
+                        <option value="">Painel de 7 dias</option>
+                        <option value="">Dashboard de performance de veiculo</option>
+                        <option value="">Painel de limite de velocidade na rodovia</option>
+                    </optgroup>
+                    <optgroup label="Gerencialmento de qualidade de dados">
+                        <option value="">Relatório de exclusão de atividade</option>
+                        <option value="">Relatório diario de exclusão de atividade</option>
+                        <option value="">Relatório de precisão da posição do evento</option>
+                    </optgroup>
+                    <optgroup label="Relatório de evento">
+                        <option value=""> Relatório detalhado de evento</option>
+                        <option value=""> Relatório sumarizado de eventos de servidor em geocerca</option>
+                        <option value=""> Relatório geral de evento</option>
+                        <option value=""> Relatório resumido de eventos </option>
+                        <option value=""> Relatório de evento de terminal</option>
+                    </optgroup>
+                    <optgroup label="Relatório de combustivel">
+                        <option value="">Relatório comparativo de combustível</option>
+                        <option value="">Relatório diário de horas de motor e combustível</option>
+                        <option value="">Relatório diário de evento de consumo de combustivel</option>
+                        <option value="">Relatório detalhado de horas do motor/combustível</option>
+                        <option value="">Relatório detalhado de combustivel medido</option>
+                        <option value="">Relatório de consumo por horas do motor</option>
+                        <option value="">Relatório de combustivel inserido</option>
+                        <option value="">Relatório de resumo mensal de combustivel</option>
+                        <option value="">Painel operacional de combustivel</option>
+                        <option value="">Relatório de consumo de combustivel</option>
+                        <option value="">Relatório mensal de combustivel medido</option>
+                        <option value="">Relatório resumido de combustivel medido</option>
+                    </optgroup>
+                    <optgroup label="Relatório de lista">
+                        <option value="">Relatório de Configuração dos Dispositivos do Veículo</option>
+                        <option value="">Relatório de Configuração de Eventos do Veículo</option>
+                        <option value="">Relatório de veículos por dados baixados</option>
+                        <option value="">Relatório de Veículos por Tipo de Unidade</option>
+                        <option value="">Relatório da lista de ativos</option>
+                        <option value="">Relatório de diagnóstico de gestão de ativos</option>
+                        <option value="">Relatório de status móvel atual</option>
+                        <option value="">Relatório de validação dos certificados dos motoristas</option>
+                        <option value="">Relatório de vencimento das licenças de motorista</option>
+                        <option value="">Relatório de lista de motoristas</option>
+                        <option value="">Relatório de eventos do info hub</option>
+                        <option value="">Relatório detalhado do trabalho</option>
+                        <option value="">Relatório sumarizado e detalhado por modelo e data</option>
+                        <option value="">Relatório de mudanças de fuso horário</option>
+                    </optgroup>
+                </select>
+            </label>
         </div>
     </div>
 
