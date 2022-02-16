@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", e => {
+    
     let options = document.querySelectorAll("option")
     for (valor of options) {
         valor.addEventListener(`click`, e => {
@@ -32,7 +33,7 @@ function newTicket(element) {
             let ticketOptionsContent = document.querySelector(".newTicketOptionsContent")
             switch(Number(selecionarCategoria.dataset.selected)) {
                 case 1:
-                    ticketOptionsContent.innerHTML = document.querySelector("#newTicketAlteracaoPlacaContainer").innerHTML; 
+                    ticketOptionsContent.innerHTML = document.querySelector("#newTicketAlteracaoPlacaContainer").innerHTML;
                 break
 
                 case 2: 
