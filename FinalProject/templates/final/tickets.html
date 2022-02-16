@@ -110,7 +110,9 @@
                         {% endfor %}
                     </select>
                 </label>
-                <label for=""> Created by: <strong> {{ticketDetails.createdBy}}</strong></label>
+                <label for=""> Created by: 
+                    <strong> {{ticketDetails.createdBy}}</strong>
+                </label>
                 <span id="ticketDetailsCreatedDate"> Created Date: {{ticketDetails.createDate|date:"d/m/Y - H:i:s"}}</span>
                 <label id="ticketDetailsSolution" for="">Solution
                     <textarea class="form-control" name="ticketDetailsSolution" id="ticketDetailsSolution" cols="" rows="2">{{ticketDetails.solution}}</textarea>

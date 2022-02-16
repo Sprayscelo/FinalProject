@@ -84,7 +84,7 @@ function statusSelected(id){
         
 }
 
-function transition() {
+function transition(element) {
     const navBarContainer = document.querySelector(".mainNavContainer")
     let menu_icon = document.querySelector(".menu-icon")
     if (navBarContainer.dataset.menu === "closed") {

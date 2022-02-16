@@ -172,7 +172,9 @@ def servicesDetails(request, serviceID):
    })
 
 def newTicket(request):
-   return render(request, "final/newTicket.html")
+   return render(request, "final/newTicket.html",{
+      "Users": Users
+   })
 
 def newCostumer(request):
    return 0
