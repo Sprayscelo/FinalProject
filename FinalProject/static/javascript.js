@@ -19,13 +19,11 @@ const csrftoken = getCookie('csrftoken');
 
 /* -----  */
 
-document.addEventListener("DOMContentLoaded", e => {
     let classChanger = document.querySelectorAll("input")
     let statusIDs = ["serviceOrderDetailsStatus", "ticketDetailstStatus"]
     for (sts of statusIDs) {
         statusSelected(sts)
     }
-    
     let allTicketStatus = document.querySelectorAll("#ticketDetailstStatus")
     let allServiceOrderStatus = document.querySelectorAll("#serviceOrderDetailsStatus")
     let allStatus = [allTicketStatus, allServiceOrderStatus]
@@ -69,9 +67,6 @@ document.addEventListener("DOMContentLoaded", e => {
             })
         })
     }
-
-
-})
 
 function statusSelected(id){
         let inputStatus = document.querySelectorAll(`#${id}`)

@@ -51,6 +51,10 @@
     grid-template-columns: minmax(150px,1fr);
 }
 
+#newTicketSelectOptions {
+    margin-bottom: 30px;
+}
+
 .newTicketOptionsContent {
     display: grid;
     place-items: center;
@@ -179,5 +183,109 @@
     gap: 15px;
 }
 
+
+/*  */
+
+/* Problemas com relatório */
+
+.newTicketProblemasRelatorio {
+    display: grid;
+    place-items: center;
+    gap: 15px;
+}
+
+.newTicketProblemasRelatorioPeriodo div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.newTicketProblemasRelatorioPeriodo {
+    width: 100%;
+}
+
+.newTicketProblemasRelatorioVeiGar {
+    width: 100%;
+}
+
+/*  */
+
+/* Problemas de leitura de dados */
+
+.newTicketLeituraDeDados {
+    display: grid;
+    gap: 10px;
+    position: relative;
+    width: 50%;
+}
+
+.newTicketLeituraDeDadosPeriodo div {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
+}
+
+/*  */
+
+/* Procedimentos internos */
+
+.newTicketProcedimentosInternos {
+    display: grid;
+    gap: 10px;
+}
+/*  */
+
+/* Teste de CAN */
+
+.newTicketTesteCAN {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    gap: 10px;
+    width: fit-content;
+}
+
+#newTicketTesteCANContainerAdicionalInfo {
+    grid-column: 1/-1;
+}
+
+/*  */
+
+/* Problemas de passageiro */
+
+.newTicketRegistroPassageiro {
+    display: grid;
+    gap: 10px;
+}
+
+/*  */
+
+/* Problemas de configuração */
+
+/*  */
+
+/* Validacao de eventos */
+
+.newTicketValidacaoEventos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 50%;
+}
+
+.newTicketValidacaoEventosPeriodo div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+}
+
+.newTicketValidacaoEventosPeriodo {
+    grid-column: 1/-1;
+}
+
+.newTicketValidacaoEventosAddInfo {
+    grid-column: 1/-1;
+}
 
 /*  */
