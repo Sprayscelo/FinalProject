@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", e => {
     
     let options = document.querySelectorAll("option")
     for (valor of options) {
-        valor.addEventListener(`click`, e => {
+        valor.addEventListener("click", e => {
             newTicket(e.target)
         })
     }
