@@ -84,6 +84,17 @@ function newTicket(element) {
                     ticketOptionsContent.innerHTML = document.querySelector("#newTicketValidacaoEventosContainer").innerHTML
                 break
 
+                case 16: 
+                    ticketOptionsContent.innerHTML = document.querySelector("#newTicketVeiculoApitandoContainer").innerHTML
+                break
+
+                case 17: 
+                    ticketOptionsContent.innerHTML = document.querySelector("#newTicketAlteracaoEventoContainer").innerHTML
+                break
+
+                case 18:
+                    ticketOptionsContent.innerHTML = document.querySelector("#newTicketLiberacaoVeiculoContainer").innerHTML
+                break
             }
         }
         else{
