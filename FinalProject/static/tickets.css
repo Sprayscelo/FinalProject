@@ -289,3 +289,95 @@
 }
 
 /*  */
+
+/* Veiculo apitando */
+
+.newTicketVeiculoApitando {
+    display: grid;
+    place-items: center;
+    gap: 10px;
+    width:fit-content;
+}
+
+.newTicketVeiculoApitando label {
+    width: 100%;
+}
+
+.newTicketVeiculoApitandoInfoAdicionais small::after, .newTicketVeiculoApitandoInfoAdicionais small::before {
+    content: '*';
+    font-weight: bold;
+    color: red;
+}
+
+/*  */
+
+/* Alteração de evento */
+
+.newTicketAlteracaoEvento {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    gap: 10px;
+    width: fit-content;
+
+}
+
+.newTicketAlteracaoEvento label {
+    width: 100%;
+}
+
+.newTicketAlteracaoEventoNovoValor {
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap: 10px;
+    grid-column: -1/1;
+}
+
+.newTicketAlteracaoEventoJustificativa {
+    grid-column: -1/1;
+}
+
+.newTicketAlteracaoEventoRelationship {
+    grid-column: -1/1;
+    width: 100%;
+}
+
+.newTicketAlteracaoEventoRelationshipDiv {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+/*  */
+
+/* Liberacao de veiculo */
+
+.newTicketLiberacaoVeiculo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.newTicketLiberacaoVeiculoJumper small::after, .newTicketLiberacaoVeiculoJumper small::before {
+    content: '*';
+    color: red;
+}
+
+.newTicketLiberacaoVeiculoJumper small {
+    font-style: italic;
+    font-size: 12px;
+}
+
+.newTicketLiberacaoVeiculoContato {
+    display: grid;,
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: -1/1;
+    
+}
+
+.newTicketLiberacaoVeiculoContato span {
+    grid-column: -1/1;
+}
+
+/*  */

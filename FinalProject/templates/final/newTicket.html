@@ -578,19 +578,120 @@
         </div>
     </div>
 
-    <div id="newTicketVeiculoApitandoContainer">
+    <div hidden id="newTicketVeiculoApitandoContainer">
         <div class="newTicketVeiculoApitando">
             <label for="">
                 Informe a placa do veiculo:
-                <input type="text">
+                <input class="form-control" type="text">
             </label>
             <label for="">
-                Informe o <strong>DATA E HORA</strong> onde ocorreu o ultimo apito indevido:
-                <input type="datetime-local">
+                Informe o <strong>DATA E HORA </strong> aproximada onde ocorreu o ultimo apito indevido:
+                <input class="form-control text-center" type="datetime-local">
+            </label>
+            <label class="newTicketVeiculoApitandoInfoAdicionais" for="">
+                Informações adicionais
+                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                <small> Por favor coloque quais circunstancias este veiculo estava/esta apitando indevidamente </small>
             </label>
         </div>
     </div>
 
+    <div hidden id="newTicketAlteracaoEventoContainer">
+        <div class="newTicketAlteracaoEvento">
+            <label for="">Informe a placa
+                <input class="form-control" type="text" name="" id="">
+            </label>
+            <label for="">Nome do evento
+                <input class="form-control" type="text" name="" id="">
+            </label>
+            <label class="newTicketAlteracaoEventoRelationship " for="">
+                A alteração esta relacionada a:
+                <div class="newTicketAlteracaoEventoRelationshipDiv">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Parametro de evento
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                         Atraso de registro
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                        <label class="form-check-label" for="flexRadioDefault3">
+                          Atraso de campainha
+                        </label>
+                    </div>
+                </div>
+            </label>
+            <label class="newTicketAlteracaoEventoNovoValor" for="">
+                <div>
+                    <span>Valor atual</span>
+                    <input class="form-control" type="text">
+                </div>
+                <div>
+                    <span>Novo valor</span>
+                    <input class="form-control" type="text" name="" id="">
+                </div>
+            </label>
+            <label class="newTicketAlteracaoEventoJustificativa" for="">
+                <span>Favor informar a justificativa para alteração deste evento!</span>
+                <textarea class="form-control" name="" id="" cols="40" rows="5"></textarea>
+            </label>
+            <input type="submit" name="" id="" class="btn btn-success Abrir-chamado" value="Abrir Chamado">
+        </div>
+    </div>
+
+    <div hidden id="newTicketLiberacaoVeiculoContainer">
+        <div class="newTicketLiberacaoVeiculo">
+            <label for="">
+                Informe a placa:
+                <input class="form-control" type="text" name="" id="">
+            </label>
+            <label for="">
+                Favor informar <strong>ID DA CHAVE</strong> de motorista a ser utilizada:
+                <input class="form-control" type="number" name="" id="">
+            </label>
+            <div class="newTicketLiberacaoVeiculoContato text-center">
+                <span>Favor informar contato da pessoa mais proxima ao veiculo: </span> 
+                <label for="">
+                    <div>
+                       Nome:
+                        <input class="form-control" type="text" name="" id="">
+                    </div>
+                </label>
+                <label for="">
+                    <div>
+                        Numero de telefone:
+                        <input class="form-control" type="number" name="" id="">
+                    </div>
+                </label>
+            </div>
+            <label class="newTicketLiberacaoVeiculoJumper" for="">
+                <span>Se necessário, você nos autoriza a auxiliar a pessoa informada no contato a realizar um JUMPER no relé?</span>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Sim
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Não
+                    </label>
+                </div>
+                <small>Este procedimento requer um eletricista ou deve ser feito em contato com um de nossos técnicos, isso só deve ser feito em ultimos casos!</small>
+            </label>
+            <label for="">
+                Informações adicionais
+                <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+            </label>
+        </div>
+    </div>
 <link rel="stylesheet" href="{% static 'tickets.css' %}">
 <script src="{% static 'tickets.js' %}"></script>
 {% endblock %}
