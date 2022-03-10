@@ -8,44 +8,45 @@
         <h1 class="text-center">Abrir novo chamado</h1>
         <p> Antes de abrir o chamado, tenha ciencia de que quanto mais informações você colocar, mais rapido será atendido.</p>
         <h2><strong>Para prosseguir, favor preencha as informações abaixo </strong></h2>
-        <form action="">
     </div>
-    <br>
-        <div class="text-center mainFormDiv">
-            <div>
-                <label class="text-center" for=""> Por favor, selecione a categoria relacionada a sua solicitação!
-                    <select data-selected="" class="form-control" name="" id="newTicketSelectOptions">
-                        <optgroup label="Nivel 1">
-                            <option class="DefaultOption" selected value="">Selecione uma opção</option>
-                            <option class="newTicketCategoriesOptions" value="1">Alteração/correção de placa</option>
-                            <option class="newTicketCategoriesOptions" value="2">Alteração/correção de descricao</option>
-                            <option class="newTicketCategoriesOptions" value="3">Relatorio de jornada de Motorista</option>
-                            <option class="newTicketCategoriesOptions" value="4">Alteração de meta de consumo </option>
-                            <option class="newTicketCategoriesOptions" value="5">Criação de usuario</option>
-                            <option class="newTicketCategoriesOptions" value="6">Bloqueio de usuario</option>
-                            <option class="newTicketCategoriesOptions" value="7">Veiculo sem comunicação</option>
-                        </optgroup>
-                        <optgroup label="Nivel 2">
-                            <option class="newTicketCategoriesOptions" value="8"> Treinamento </option>
-                            <option class="newTicketCategoriesOptions" value="9"> Problemas com relatorio </option>
-                            <option class="newTicketCategoriesOptions" value="10"> Problema de leitura de dados </option>
-                            <option class="newTicketCategoriesOptions" value="11"> Procedimentos internos </option>
-                        </optgroup>
-                        <optgroup label="Nivel 3">
-                            <option class="newTicketCategoriesOptions" value="12"> Teste de CAN </option>
-                            <option class="newTicketCategoriesOptions" value="13"> Problemas de registro de passageiro </option>
-                            <option class="newTicketCategoriesOptions" value="14"> Problemas de configuração </option>
-                            <option class="newTicketCategoriesOptions" value="15"> Validacao de eventos </option>
-                            <option class="newTicketCategoriesOptions" value="16"> Veiculo apitando </option>
-                            <option class="newTicketCategoriesOptions" value="17"> Alteracao de evento</option>
-                            <option class="newTicketCategoriesOptions" value="18"> Liberacao de veiculo</option>
-                        </optgroup>
-                    </select>
-                </label>
+    <form action="">
+        <br>
+            <div class="text-center mainFormDiv">
+                <div>
+                    <label class="text-center" for=""> Por favor, selecione a categoria relacionada a sua solicitação!
+                        <select data-selected="" class="form-control" name="" id="newTicketSelectOptions">
+                            <optgroup label="Nivel 1">
+                                <option class="DefaultOption" selected value="0">Selecione uma opção</option>
+                                <option class="newTicketCategoriesOptions" value="1">Alteração/correção de placa</option>
+                                <option class="newTicketCategoriesOptions" value="2">Alteração/correção de descricao</option>
+                                <option class="newTicketCategoriesOptions" value="3">Relatorio de jornada de Motorista</option>
+                                <option class="newTicketCategoriesOptions" value="4">Alteração de meta de consumo </option>
+                                <option class="newTicketCategoriesOptions" value="5">Criação de usuario</option>
+                                <option class="newTicketCategoriesOptions" value="6">Bloqueio de  usuario</option>
+                                <option class="newTicketCategoriesOptions" value="7">Veiculo sem comunicação</option>
+                            </optgroup>
+                            <optgroup label="Nivel 2">
+                                <option class="newTicketCategoriesOptions" value="8"> Treinamento </option>
+                                <option class="newTicketCategoriesOptions" value="9"> Problemas com relatorio </option>
+                                <option class="newTicketCategoriesOptions" value="10"> Problema de leitura de dados </option>
+                                <option class="newTicketCategoriesOptions" value="11"> Procedimentos internos </option>
+                            </optgroup>
+                            <optgroup label="Nivel 3">
+                                <option class="newTicketCategoriesOptions" value="12"> Teste de CAN </option>
+                                <option class="newTicketCategoriesOptions" value="13"> Problemas de registro de passageiro </option>
+                                <option class="newTicketCategoriesOptions" value="14"> Problemas de configuração </option>
+                                <option class="newTicketCategoriesOptions" value="15"> Validacao de eventos </option>
+                                <option class="newTicketCategoriesOptions" value="16"> Veiculo apitando </option>
+                                <option class="newTicketCategoriesOptions" value="17"> Alteracao de evento</option>
+                                <option class="newTicketCategoriesOptions" value="18"> Liberacao de veiculo</option>
+                            </optgroup>
+                        </select>
+                    </label>
+                </div>
+                <div class="newTicketOptionsContent">
+                </div>
+                <input hidden type="submit" class="btn btn-success Abrir-chamado" id="" value="Abrir Chamado">
             </div>
-            <div class="newTicketOptionsContent">
-            </div>
-        </div>
     </form>
 </div>
 
@@ -61,7 +62,6 @@
             <label for=""> Informacoes Adicionais (Opcional)
                 <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
             </label>
-            <input class="btn btn-success Abrir-chamado" type="submit" name="" id="" value="Abrir chamado">
         </div>
     </div>
     
@@ -82,7 +82,6 @@
                 Caso a alteração se trata de grande quantidade, você pode anexar um arquivo!
                 <input class="form-control" type="file" name="" id="">
             </label>
-            <input class="btn btn-success Abrir-chamado" type="text" name="" id="" value="Abrir chamado">
         </div>
     </div>
     
@@ -472,7 +471,6 @@
                 Breve descrição do procedimento
                 <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
             </label>
-            <input type="submit" value="Abrir chamado" class="btn btn-success Abrir-chamado">
         </div>
     </div>
 
@@ -506,7 +504,6 @@
                 Informacoes adicionais:
                 <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
             </label>
-            <input type="submit" class="btn btn-success Abrir-chamado" value="Abrir chamado">
         </div>
     </div>
 
@@ -543,7 +540,6 @@
                     <label class="form-check-label" for="inlineCheckbox3">Expresso São José</label>
                 </div>
             </label>
-            <input class="btn btn-success Abrir-chamado" type="submit" name="" id="" value="Abrir chamado">
         </div>
     </div>
 
@@ -574,7 +570,6 @@
                 Informações adicionais:
                 <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
             </label>
-            <input type="submit" class="btn btn-success Abrir-chamado" value="Abrir Chamado">
         </div>
     </div>
 
@@ -641,8 +636,7 @@
                 <span>Favor informar a justificativa para alteração deste evento!</span>
                 <textarea class="form-control" name="" id="" cols="40" rows="5"></textarea>
             </label>
-            <input type="submit" name="" id="" class="btn btn-success Abrir-chamado" value="Abrir Chamado">
-        </div>
+         </div>
     </div>
 
     <div hidden id="newTicketLiberacaoVeiculoContainer">
