@@ -7,6 +7,7 @@ selectionCat.addEventListener('change', e => {
     if (selectionCat.value !== "0") {
         document.querySelector(".Abrir-chamado").hidden = false
     }
+    document.querySelector(".newTicketOptionsContent").hidden = false
     newTicket(e.target)
 })
 

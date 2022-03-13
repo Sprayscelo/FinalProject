@@ -11,6 +11,11 @@
 
 }
 
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 #ticketDetailsDescription {
     width: 1fr;
     grid-column: 1/-1;
@@ -51,6 +56,9 @@
 }
 
 #newTicketSelectOptions {
+    color: #09bc8a;
+    font-weight: bold;
+    background-color: #004346;
     margin-bottom: 30px;
 }
 
@@ -59,21 +67,40 @@
     display: grid;
     place-items: center;
     position: relative;
-    width: 800px;
+    width: 80%;
+    min-width: fit-content;
     background-color: #004346;
     z-index: 0;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 30px 5px #508991;
+    box-shadow: 0px 0px 10px 0px #508991;
 }
 
-.newTicketOptionsContent:first-child {
+
+.newTicketOptionsContent label {
+    font-weight: 700;
 }
+
+.newTicketOptionsContent input[type="text"], 
+.newTicketOptionsContent input[type="number"],
+.newTicketOptionsContent input[type="date"],
+.newTicketOptionsContent input[type="datetime-local"],
+.newTicketOptionsContent input[type="email"],
+.newTicketOptionsContent select{
+    text-align: center;
+    margin-top: 5px;
+}
+
+.newTicketOptionsContent textarea, .newTicketOptionsContent input[type="file"] {
+    margin-top: 5px;
+}
+
 /* ALTERACAO DE PLACA  */
 
 .newTicketAlteracaoPlaca {
     display: grid;
-    grid-template-columns: repeat(2, minmax(250px, 600px));
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    width: 100%;
     gap: 10px;
 }
 
@@ -88,6 +115,7 @@
 .Abrir-chamado  {
     margin: 15px;
     width: 30%;
+    min-width: fit-content;
     background-color: #004346;
 }
 
@@ -98,26 +126,32 @@
 .newTicketAlteracaoDescricao {
     display: grid;
     gap: 10px;
-    width: 50%;
+    width: 100%;
+}
+
+.newTicketNovaDescricao {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 10px;
 }
 
 /*  */
 
 /* JORNADA */
 
-.newTicketJornada {
-    width: 50%;
-}
-
-.newTicketJornada label {
+.newTicketJornada, .newTicketJornada label {
     width: 100%;
-    position: relative;
 }
 
 .newTicketJornadaData{
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr;
+}
+
+.newTicketJornadaPeriodo {
+    grid-column: -1/1;
 }
 
 /*  */
@@ -127,7 +161,7 @@
 .newTicketAlteracaoMetaConsumo {
     display: grid;
     position: relative;
-    width: fit-content;
+    width: 100%;
     gap: 15px;
     z-index: -1;
 }
@@ -145,8 +179,13 @@
 
 .newTicketCriacaoUsuario {
     display: grid;
-    position: relative;
-    width: fit-content;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+}
+
+.newTicketCriacaoUsuarioPlataformas, .newTicketCriacaoUsuarioGaragem, .newTicketCriacaoUsuarioPermissao {
+    grid-column: -1/1;
 }
 
 /*  */
@@ -155,7 +194,7 @@
 /* BLOQUEIO DE USUARIO */
 
 .newTicketBloqueioUsuario {
-    width: fit-content;
+    width: 100%;
 }
 
 .newTicketBloqueioUsuario label {
@@ -168,16 +207,18 @@
 
 .newTicketVeiculoComunicacao {
     display: grid;
-    gap: 15px;
-
+    gap: 10px;
+    width: 100%;
 }
 
-.newTicketInfoAdicional {
-    position: relative;
+
+.newTicketVeiculoComunicacaoPlacaChassi, .newTicketVeiculoComunicacaoInfoAdicional, .newTicketVeiculoComunicacaoInfoAdicional label {
+    width: 100%;
 }
 
-.newTicketVeiculoComunicacaoPlacaChassi {
-    width: 65%;
+.newTicketVeiculoComunicacaoUltima span {
+    display: block;
+    margin-bottom: 10px;
 }
 
 /*  */
@@ -186,9 +227,9 @@
 
 .newTicketTreinamento {
     display: grid;
-    gap: 15px;
+    gap: 10px;
+    width: 100%;
 }
-
 
 /*  */
 
@@ -198,6 +239,7 @@
     display: grid;
     place-items: center;
     gap: 15px;
+    width: 100%;
 }
 
 .newTicketProblemasRelatorioPeriodo div {
@@ -214,6 +256,10 @@
     width: 100%;
 }
 
+.newTicketProblemasRelatorioMIX {
+    width: 100%;
+}
+
 /*  */
 
 /* Problemas de leitura de dados */
@@ -221,8 +267,7 @@
 .newTicketLeituraDeDados {
     display: grid;
     gap: 10px;
-    position: relative;
-    width: 50%;
+    width: 100%;
 }
 
 .newTicketLeituraDeDadosPeriodo div {
@@ -238,6 +283,7 @@
 .newTicketProcedimentosInternos {
     display: grid;
     gap: 10px;
+    width: 100%;
 }
 /*  */
 
@@ -248,7 +294,7 @@
     grid-template-columns: 1fr 1fr;
     position: relative;
     gap: 10px;
-    width: fit-content;
+    width: 100%;
 }
 
 #newTicketTesteCANContainerAdicionalInfo {
@@ -262,6 +308,7 @@
 .newTicketRegistroPassageiro {
     display: grid;
     gap: 10px;
+    width: 100%;
 }
 
 /*  */
@@ -276,14 +323,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    width: 50%;
+    width: 100%;
 }
 
 .newTicketValidacaoEventosPeriodo div {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-
 }
 
 .newTicketValidacaoEventosPeriodo {
@@ -302,7 +348,14 @@
     display: grid;
     place-items: center;
     gap: 10px;
-    width:fit-content;
+    width: 100%;
+}
+
+.newTicketVeiculoApitando div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: flex-end;
+    gap: 10px;
 }
 
 .newTicketVeiculoApitando label {
@@ -324,7 +377,7 @@
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
     gap: 10px;
-    width: fit-content;
+    width: 100%;
 
 }
 
@@ -348,9 +401,10 @@
     width: 100%;
 }
 
-.newTicketAlteracaoEventoRelationshipDiv {
+.newTicketAlteracaoEventoRelationshipParametro {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    grid-template-columns: repeat(3, 33%);
     gap: 10px;
 }
 
@@ -362,6 +416,11 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+    width: 100%;
+}
+
+.newTicketLiberacaoVeiculo input, .newTicketLiberacaoVeiculo textarea {
+    margin-top: 5px;
 }
 
 .newTicketLiberacaoVeiculoJumper small::after, .newTicketLiberacaoVeiculoJumper small::before {
@@ -375,14 +434,23 @@
 }
 
 .newTicketLiberacaoVeiculoContato {
-    display: grid;,
+    display: grid;
     gap: 10px;
     grid-template-columns: repeat(2, 1fr);
     grid-column: -1/1;
     
 }
 
-.newTicketLiberacaoVeiculoContato span {
+.newTicketLiberacaoVeiculoContato span, .newTicketLiberacaoVeiculoInfoAdicional, .newTicketLiberacaoVeiculoJumper {
+    grid-column: -1/1;
+}
+
+.newTicketLiberacaoVeiculoJumper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+}
+.newTicketLiberacaoVeiculoJumper span, .newTicketLiberacaoVeiculoJumper small {
     grid-column: -1/1;
 }
 

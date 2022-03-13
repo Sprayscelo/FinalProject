@@ -4,12 +4,6 @@ body, html{
     height: 100%;
 }
 
-#LayoutContainer {
-    position: relative;
-    background-color: #09bc8a;
-}
-
-
 * {
     font-family: 'Dongle', sans-serif;
     font-family: 'Nunito Sans', sans-serif;
@@ -67,6 +61,7 @@ img {
     background-color: #004346;
     position: absolute;
     height: 100%;
+    z-index: 1;
 }
 
 [data-menu="closed"] {

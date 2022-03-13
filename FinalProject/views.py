@@ -21,7 +21,7 @@ def newComment(request, moduleID, module):
          CommentLink.save()
 
 def index(request):
-   return render(request, "final/index.html")
+   return render(request, "final/login.html")
 
 def tickets(request):
    return render(request, "final/tickets.html", {
