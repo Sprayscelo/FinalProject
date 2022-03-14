@@ -21,7 +21,7 @@ def newComment(request, moduleID, module):
          CommentLink.save()
 
 def index(request):
-   return render(request, "final/index.html")
+   return render(request, "final/login.html")
 
 def tickets(request):
    return render(request, "final/tickets.html", {
@@ -54,7 +54,6 @@ def ticketDetails(request, ticketID):
       )
       return HttpResponseRedirect(reverse("tickets"))
 
-   
    return render(request, "final/tickets.html", {
       "ticketDetails": ticketDetails,
       "ticketStatus": ticketStatusChoices,

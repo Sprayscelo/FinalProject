@@ -8,81 +8,87 @@
         <h1 class="text-center">Abrir novo chamado</h1>
         <p> Antes de abrir o chamado, tenha ciencia de que quanto mais informações você colocar, mais rapido será atendido.</p>
         <h2><strong>Para prosseguir, favor preencha as informações abaixo </strong></h2>
-        <form action="">
     </div>
-    <br>
-        <div class="text-center mainFormDiv">
-            <div>
-                <label class="text-center" for=""> Por favor, selecione a categoria relacionada a sua solicitação!
-                    <select data-selected="" class="form-control" name="" id="newTicketSelectOptions">
-                        <optgroup label="Nivel 1">
-                            <option class="DefaultOption" selected value="">Selecione uma opção</option>
-                            <option class="newTicketCategoriesOptions" value="1">Alteração/correção de placa</option>
-                            <option class="newTicketCategoriesOptions" value="2">Alteração/correção de descricao</option>
-                            <option class="newTicketCategoriesOptions" value="3">Relatorio de jornada de Motorista</option>
-                            <option class="newTicketCategoriesOptions" value="4">Alteração de meta de consumo </option>
-                            <option class="newTicketCategoriesOptions" value="5">Criação de usuario</option>
-                            <option class="newTicketCategoriesOptions" value="6">Bloqueio de usuario</option>
-                            <option class="newTicketCategoriesOptions" value="7">Veiculo sem comunicação</option>
-                        </optgroup>
-                        <optgroup label="Nivel 2">
-                            <option class="newTicketCategoriesOptions" value="8"> Treinamento </option>
-                            <option class="newTicketCategoriesOptions" value="9"> Problemas com relatorio </option>
-                            <option class="newTicketCategoriesOptions" value="10"> Problema de leitura de dados </option>
-                            <option class="newTicketCategoriesOptions" value="11"> Procedimentos internos </option>
-                        </optgroup>
-                        <optgroup label="Nivel 3">
-                            <option class="newTicketCategoriesOptions" value="12"> Teste de CAN </option>
-                            <option class="newTicketCategoriesOptions" value="13"> Problemas de registro de passageiro </option>
-                            <option class="newTicketCategoriesOptions" value="14"> Problemas de configuração </option>
-                            <option class="newTicketCategoriesOptions" value="15"> Validacao de eventos </option>
-                            <option class="newTicketCategoriesOptions" value="16"> Veiculo apitando </option>
-                            <option class="newTicketCategoriesOptions" value="17"> Alteracao de evento</option>
-                            <option class="newTicketCategoriesOptions" value="18"> Liberacao de veiculo</option>
-                        </optgroup>
-                    </select>
-                </label>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <br>
+            <div class="text-center mainFormDiv">
+                <div>
+                    <label class="text-center" for=""> Por favor, selecione a categoria relacionada a sua solicitação!
+                        <select data-selected="" class="form-control" name="tipoChamado" id="newTicketSelectOptions">
+                            <optgroup label="Nivel 1" >
+                                <option class="DefaultOption" selected value="0">Selecione uma opção</option>
+                                <option class="newTicketCategoriesOptions" value="1">Alteração/correção de placa</option>
+                                <option class="newTicketCategoriesOptions" value="2">Alteração/correção de descricao</option>
+                                <option class="newTicketCategoriesOptions" value="3">Relatorio de jornada de Motorista</option>
+                                <option class="newTicketCategoriesOptions" value="4">Alteração de meta de consumo </option>
+                                <option class="newTicketCategoriesOptions" value="5">Criação de usuario</option>
+                                <option class="newTicketCategoriesOptions" value="6">Bloqueio de  usuario</option>
+                                <option class="newTicketCategoriesOptions" value="7">Veiculo sem comunicação</option>
+                            </optgroup>
+                            <optgroup label="Nivel 2">
+                                <option class="newTicketCategoriesOptions" value="8"> Treinamento </option>
+                                <option class="newTicketCategoriesOptions" value="9"> Problemas com relatorio </option>
+                                <option class="newTicketCategoriesOptions" value="10"> Problema de leitura de dados </option>
+                                <option class="newTicketCategoriesOptions" value="11"> Procedimentos internos </option>
+                            </optgroup>
+                            <optgroup label="Nivel 3">
+                                <option class="newTicketCategoriesOptions" value="12"> Teste de CAN </option>
+                                <option class="newTicketCategoriesOptions" value="13"> Problemas de registro de passageiro </option>
+                                <option class="newTicketCategoriesOptions" value="14"> Problemas de configuração </option>
+                                <option class="newTicketCategoriesOptions" value="15"> Validacao de eventos </option>
+                                <option class="newTicketCategoriesOptions" value="16"> Veiculo apitando </option>
+                                <option class="newTicketCategoriesOptions" value="17"> Alteracao de evento</option>
+                                <option class="newTicketCategoriesOptions" value="18"> Liberacao de veiculo</option>
+                            </optgroup>
+                        </select>
+                    </label>
+                </div>
+                <div class="newTicketOptionsContent" hidden>
+                </div>
+                <input hidden type="submit" class="btn btn-success Abrir-chamado" id="" value="Abrir Chamado">
             </div>
-            <div class="newTicketOptionsContent">
-            </div>
-        </div>
     </form>
 </div>
-
 
     <div hidden id="newTicketAlteracaoPlacaContainer" class="text-center newTicket-option-selected">
         <div class="text-center newTicketAlteracaoPlaca">
             <label for="">Informe a placa:
-                <input class="form-control" type="text" name="" id="">
+                <input class="form-control" type="text" name="NTAP_placa" id="">
             </label>
             <label for="">Informe a nova placa: 
-                <input class="form-control" type="text" name="" id="">
+                <input class="form-control" type="text" name="NTAP_novaPlaca" id="">
             </label>
-            <label for=""> Informacoes Adicionais (Opcional)
-                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+            <label for=""> 
+                <hr>
+                Informacoes Adicionais (Opcional) 
+                <textarea class="form-control" name="NTAP_infoAdicional" id="" cols="30" rows="5"></textarea>
             </label>
-            <input class="btn btn-success Abrir-chamado" type="submit" name="" id="" value="Abrir chamado">
         </div>
     </div>
     
     <div hidden id="newTicketAlteracaoDescricaoContainer" class="text-center newTicket-option-selected">
         <div class="newTicketAlteracaoDescricao">
-            <label for="">Informe a descriçao atual:
-                <input class="form-control" type="text" name="" id="" >
-            </label>
-            <label for="">
-                Informe a nova descricao:
-                <input class="form-control" placeholder="Ex: Modelo do veiculo - Placa" type="text" name="" id="">
-            </label>
+            <div class="newTicketNovaDescricao">
+                <label for="">
+                    Informe a descriçao atual:
+                    <input class="form-control" type="text" name="NTAD_descricao" id="" >
+                </label>
+                <label for="">
+                    Informe a nova descricao:
+                    <input class="form-control" placeholder="Ex: Modelo do veiculo - Placa" type="text" name="NTAD_novaDescricao" id="">
+                </label>
+            </div>
+            <hr>
             <label for="">
                 Informações adicionais (Opcional)
-                <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="NTAD_infoAdicional" id="" cols="30" rows="5"></textarea>
             </label>
+            <hr>
             <label for="">
                 Caso a alteração se trata de grande quantidade, você pode anexar um arquivo!
-                <input class="form-control" type="file" name="" id="">
+                <input class="form-control" type="file" name="NTAD_arquivo" id="">
             </label>
-            <input class="btn btn-success Abrir-chamado" type="text" name="" id="" value="Abrir chamado">
         </div>
     </div>
     
@@ -90,31 +96,35 @@
         <div class="newTicketJornada">
             <label for="">
                 Por favor informe o nome do motorista desejado!
-                <input class="form-control" type="text" name="" id="">
+                <input class="form-control" type="text" name="NTJ_motorista" id="">
             </label>
+            <hr>
             <div class="newTicketJornadaData">
+                <span class="newTicketJornadaPeriodo">Por favor informe o periodo: </span>
                 <label for="">
-                    <span>De:<input class="form-control" type="date"></span>
+                    <span>De:<input class="form-control" type="date" name="NTJ_dataDe"></span>
                 </label>
                 <label for="">
-                    <span>Até: <input class="form-control" type="date" name="" id=""></span>
+                    <span>Até: <input class="form-control" type="date" name="NTJ_dataAte" id=""></span>
                 </label>
             </div>
-            <div>
-                <span style="display: block;">Relatorio deve ser separado por:</span>
+            <hr>
+            <label style="display: block;">
+                <span style="display:block">Relatorio deve ser separado por:</span>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <input class="form-check-input" type="radio" name="NTJ_mes" id="inlineRadio1" value="option1">
                     <label class="form-check-label" for="inlineRadio1">Mês</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <input class="form-check-input" type="radio" name="NTJ_ano" id="inlineRadio2" value="option2">
                     <label class="form-check-label" for="inlineRadio2">Ano</label>
                 </div>
-            </div>
+            </label>
+            <hr>
             <div>
                 <label for="">
                     Informações adicionais (Opcional)
-                    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" name="NTJ_infoAdicional" id="" cols="30" rows="10"></textarea>
                 </label>
             </div>
         </div>
@@ -125,19 +135,21 @@
             <div class="newTicketAlteracaoMetaConsumoVeiculoInfo">
                 <label class="" for="">
                     Placa do veiculo:
-                    <input class="form-control" type="text" name="" id="">
+                    <input class="form-control" type="text" name="NTAMC_placa" id="">
                 </label>
                 <label for="">
                     Informe a meta desejada:
-                    <input class="form-control" type="number" name="" id="">
+                    <input class="form-control" type="number" name="NTAMC_meta" id="">
                 </label>
             </div>
+            <hr>
+            <label for="">Informações adicionais:
+                <textarea class="form-control" name="NTAMC_infoAdicional" id="" cols="30" rows="5"></textarea>
+            </label>
+            <hr>
             <label for="">
                 Caso a alteração se trata de grande quantidade, você pode anexar um arquivo!
-                <input class="form-control" type="file" name="" id="">
-            </label>
-            <label for="">Informações adicionais:
-                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                <input class="form-control" type="file" name="NTAMC_arquivo" id="">
             </label>
         </div>
     </div>
@@ -146,42 +158,45 @@
         <div class="newTicketCriacaoUsuario">
             <label for="">
                 Nome completo:
-                <input class="form-control" type="text" name="" id="">
+                <input class="form-control" type="text" name="NTCU_nome" id="">
             </label>
             <label for="">
                 E-mail:
-                <input class="form-control" type="email" name="" id="">
+                <input class="form-control" type="email" name="NTCU_email" id="">
             </label>
             <div class="newTicketCriacaoUsuarioPlataformas">
-                <p>Plataforma</p>
+                <hr>
+                <strong style="display: block;">Plataforma</strong>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="NTCU_mixtelematics" value="option1">
                     <label class="form-check-label" for="inlineCheckbox1">Mix Telematics</label>
                 </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="NTCU_appwikidados" value="option2">
                     <label class="form-check-label" for="inlineCheckbox2">App Wikidados</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTCU_getrak" value="option3">
                     <label class="form-check-label" for="inlineCheckbox3">Getrak</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="NTCU_cameras" value="option4">
                     <label class="form-check-label" for="inlineCheckbox3">Cameras Wikidados</label>
                 </div>
             </div>
-            <label for="">
-                Quais garagens/veiculo este usuario pode visualizar?
-                <input class="form-control" type="text" name="" id="">
+            <label class="newTicketCriacaoUsuarioGaragem" for="">
+                <hr>
+                <span>Quais garagens/veiculo este usuario pode visualizar?</span> 
+                <input class="form-control" type="text" name="NTCU_permissaoGaragem" id="">
             </label>
-            <label for="">
-                Copiar permissão de:
-                <select class="form-select" name="newTicketUsuariosEmpresa" id="">
+            <label class="newTicketCriacaoUsuarioPermissao" for="">
+                <hr>
+                <span> Copiar permissão de: </span> 
+                <select class="form-select" name="NTCU_copiarPermissao" id="">
                     {% for user in Users%}
-                    <option value="">
-                        {{ user }}
-                    </option>
+                        <option value="">
+                            {{ user }}
+                        </option>
                     {% endfor%}
                 </select>
             </label>
@@ -191,69 +206,74 @@
     <div hidden id="newTicketBloqueioUsuarioContainer" class="text-center newTicket-option-selected">
         <div class="newTicketBloqueioUsuario">
             <label for="">
-                E-mail: <input class="form-control" type="email" name="" id="">
+                E-mail: <input class="form-control" type="email" name="NTBU_email" id="">
             </label>
+            <hr>
             <div class="newTicketBloqueioUsuarioPlataformas">
-                <p>Plataforma</p>
+                <span style="display: block;">Plataforma</span>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="NTBU_mixtelematics" value="option1">
                     <label class="form-check-label" for="inlineCheckbox1">Mix Telematics</label>
                 </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="NTBU_appwikidados" value="option2">
                     <label class="form-check-label" for="inlineCheckbox2">App Wikidados</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTBU_getrak" value="option3">
                     <label class="form-check-label" for="inlineCheckbox3">Getrak</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="NTBU_cameras" value="option4">
                     <label class="form-check-label" for="inlineCheckbox3">Cameras Wikidados</label>
                 </div>
             </div>
+            <hr>
             <label for="">
-                Motivo (Opcional): <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                Motivo (Opcional): <textarea class="form-control" name="NTBU_motivo" id="" cols="30" rows="10"></textarea>
             </label>
         </div>
     </div>
     
     <div hidden id="newTicketVeiculoComunicacaoContainer" class="text-center newTicket-option-selected">
         <div class="newTicketVeiculoComunicacao">
-            <div>
+            <div class="newTicketVeiculoComunicacaoPlacaChassiDiv">
                 <label for="" class="newTicketVeiculoComunicacaoPlacaChassi text-center">
-                    Placa/chassi: <input class="form-control " type="text" name="" id="">
+                    Placa/chassi: <input class="form-control " type="text" name="NTVC_placa" id="">
                 </label>
             </div>
-            <div>
+            <hr>
+            <div class="newTicketVeiculoComunicacaoUltima">
                 <label> 
-                    <p> Veiculo foi utilizado após a ultima data de comunicação? </p> 
+                    <span> Veiculo foi utilizado após a ultima data de comunicação? </span> 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="newTicketVeiculoUtilizado" id="inlineRadio1" value="option1">
+                        <input class="form-check-input" type="radio" name="NTVC_utilizado" id="inlineRadio1" value="Sim">
                         <label class="form-check-label" for="inlineRadio1">Sim</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="newTicketVeiculoUtilizado" id="inlineRadio2" value="option2">
+                        <input class="form-check-input" type="radio" name="NTVC_utilizado" id="inlineRadio2" value="Não">
                         <label class="form-check-label" for="inlineRadio2">Não</label>
                     </div>
                 </label> 
             </div>
-            <div>
+            <hr>
+            <div class="newTicketVeiculoComunicacaoUltima">
                 <label>
-                    <p>Seu veiculo passou por alguma mecanica, auto-eletrica ou qualquer tipo de manutenção recentemente?                    </p> 
+                    <span>Seu veiculo passou por alguma mecanica, auto-eletrica ou qualquer tipo de manutenção recentemente?</span>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="newTicketVeiculoMecanica" id="inlineRadio1" value="option1">
+                        <input class="form-check-input" type="radio" name="NTVC_mecanica" id="inlineRadio1" value="Sim">
                         <label class="form-check-label" for="inlineRadio1">Sim</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input checked" type="radio" name="newTicketVeiculoMecanica" id="inlineRadio2" value="option2">
+                        <input class="form-check-input checked" type="radio" name="NTVC_mecanica" id="inlineRadio2" value="Não">
                         <label class="form-check-label" for="inlineRadio2">Não</label>
                     </div>
                 </label> 
             </div>
-            <div>
+            <hr>
+            <div class="newTicketVeiculoComunicacaoInfoAdicional">
                 <label for=""> Informações adicionais:
-                    <textarea class="form-control newTicketInfoAdicional" name="" id="" cols="50" rows="5"></textarea>
+                    <textarea class="form-control newTicketInfoAdicional" name="NTVC_infoAdicional" id="" cols="" rows=""></textarea>
                 </label>
             </div>
         </div>
@@ -262,152 +282,157 @@
     <div hidden id="newTicketTreinamentoContainer">
         <div class="newTicketTreinamento">
             <label for="">
-                Sugerir data do treinamento (Sujeito a alteração) <input class="form-control" type="datetime-local" name="" id="">
+                Sugerir data do treinamento (Sujeito a alteração) <input class="form-control" type="datetime-local" name="NTT_data" id="">
             </label>
+            <hr>
             <label for="">
                 <div>
-                    <p>Plataforma</p>
+                    <span style="display: block;">Plataforma</span>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="NTT_plataforma" value="Mix Telematics">
                         <label class="form-check-label" for="inlineCheckbox1">Mix Telematics</label>
                     </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="NTT_plataforma" value="App Wikidados">
                         <label class="form-check-label" for="inlineCheckbox2">App Wikidados</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTT_plataforma" value="Getrak">
                         <label class="form-check-label" for="inlineCheckbox3">Getrak</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="NTT_plataforma" value="Cameras Wikidados">
                         <label class="form-check-label" for="inlineCheckbox3">Cameras Wikidados</label>
                     </div>
                 </div>
             </label>
+            <hr>
             <label for="">
                 Informações adicionais:
-                <textarea class="form-control" name="" id="" cols="50" rows="5"></textarea>
+                <textarea class="form-control" name="NTT_infoAdicional" id="" cols="50" rows="5"></textarea>
             </label>
         </div>
     </div>
 
     <div hidden id="newTicketProblemasRelatorioContainer">
         <div class="newTicketProblemasRelatorio">
-            <label for="">
-                <select class="form-select" name="" id="">
+            <label class="newTicketProblemasRelatorioMIX" for="">
+                <span>Qual relatório você esta visualizando?</span>
+                <select class="form-select" name="NTPR_tipoRelatorio" id="">
                     <optgroup label="Relatórios de custo">
-                        <option value="">Relatório de custo por distancia</option>
-                        <option value="">Relatório de historico de serviços</option>
+                        <option value="Relatório de custo por distancia">Relatório de custo por distancia</option>
+                        <option value="Relatório de historico de serviços">Relatório de historico de serviços</option>
                     </optgroup>
                     <optgroup label="Painéis">
-                        <option value="">Painel de 7 dias</option>
-                        <option value="">Dashboard de performance de veiculo</option>
-                        <option value="">Painel de limite de velocidade na rodovia</option>
+                        <option value="Painel de 7 dias">Painel de 7 dias</option>
+                        <option value="Dashboard de performance de veiculo">Dashboard de performance de veiculo</option>
+                        <option value="Painel de limite de velocidade na rodovia">Painel de limite de velocidade na rodovia</option>
                     </optgroup>
                     <optgroup label="Gerencialmento de qualidade de dados">
-                        <option value="">Relatório de exclusão de atividade</option>
-                        <option value="">Relatório diario de exclusão de atividade</option>
-                        <option value="">Relatório de precisão da posição do evento</option>
+                        <option value="Relatório de exclusão de atividade">Relatório de exclusão de atividade</option>
+                        <option value="Relatório diario de exclusão de atividade">Relatório diario de exclusão de atividade</option>
+                        <option value="Relatório de precisão da posição do evento">Relatório de precisão da posição do evento</option>
                     </optgroup>
                     <optgroup label="Relatório de evento">
-                        <option value=""> Relatório detalhado de evento</option>
-                        <option value=""> Relatório sumarizado de eventos de servidor em geocerca</option>
-                        <option value=""> Relatório geral de evento</option>
-                        <option value=""> Relatório resumido de eventos </option>
-                        <option value=""> Relatório de evento de terminal</option>
+                        <option value="Relatório detalhado de evento"> Relatório detalhado de evento</option>
+                        <option value="Relatório sumarizado de eventos de servidor em geocerca"> Relatório sumarizado de eventos de servidor em geocerca</option>
+                        <option value="Relatório geral de evento"> Relatório geral de evento</option>
+                        <option value="Relatório resumido de eventos "> Relatório resumido de eventos </option>
+                        <option value="Relatório de evento de terminal"> Relatório de evento de terminal</option>
                     </optgroup>
                     <optgroup label="Relatório de combustivel">
-                        <option value="">Relatório comparativo de combustível</option>
-                        <option value="">Relatório diário de horas de motor e combustível</option>
-                        <option value="">Relatório diário de evento de consumo de combustivel</option>
-                        <option value="">Relatório detalhado de horas do motor/combustível</option>
-                        <option value="">Relatório detalhado de combustivel medido</option>
-                        <option value="">Relatório de consumo por horas do motor</option>
-                        <option value="">Relatório de combustivel inserido</option>
-                        <option value="">Relatório de resumo mensal de combustivel</option>
-                        <option value="">Painel operacional de combustivel</option>
-                        <option value="">Relatório de consumo de combustivel</option>
-                        <option value="">Relatório mensal de combustivel medido</option>
-                        <option value="">Relatório resumido de combustivel medido</option>
+                        <option value="Relatório comparativo de combustível">Relatório comparativo de combustível</option>
+                        <option value="Relatório diário de horas de motor e combustível">Relatório diário de horas de motor e combustível</option>
+                        <option value="Relatório diário de evento de consumo de combustivel">Relatório diário de evento de consumo de combustivel</option>
+                        <option value="Relatório detalhado de horas do motor/combustível">Relatório detalhado de horas do motor/combustível</option>
+                        <option value="Relatório detalhado de combustivel medido">Relatório detalhado de combustivel medido</option>
+                        <option value="Relatório de consumo por horas do motor">Relatório de consumo por horas do motor</option>
+                        <option value="Relatório de combustivel inserido">Relatório de combustivel inserido</option>
+                        <option value="Relatório de resumo mensal de combustivel">Relatório de resumo mensal de combustivel</option>
+                        <option value="Painel operacional de combustivel">Painel operacional de combustivel</option>
+                        <option value="Relatório de consumo de combustivel">Relatório de consumo de combustivel</option>
+                        <option value="Relatório mensal de combustivel medido">Relatório mensal de combustivel medido</option>
+                        <option value="Relatório resumido de combustivel medido">Relatório resumido de combustivel medido</option>
                     </optgroup>
                     <optgroup label="Relatório de lista">
-                        <option value="">Relatório de Configuração dos Dispositivos do Veículo</option>
-                        <option value="">Relatório de Configuração de Eventos do Veículo</option>
-                        <option value="">Relatório de veículos por dados baixados</option>
-                        <option value="">Relatório de Veículos por Tipo de Unidade</option>
-                        <option value="">Relatório da lista de ativos</option>
-                        <option value="">Relatório de diagnóstico de gestão de ativos</option>
-                        <option value="">Relatório de status móvel atual</option>
-                        <option value="">Relatório de validação dos certificados dos motoristas</option>
-                        <option value="">Relatório de vencimento das licenças de motorista</option>
-                        <option value="">Relatório de lista de motoristas</option>
-                        <option value="">Relatório de eventos do info hub</option>
-                        <option value="">Relatório detalhado do trabalho</option>
-                        <option value="">Relatório sumarizado e detalhado por modelo e data</option>
-                        <option value="">Relatório de mudanças de fuso horário</option>
+                        <option value="Relatório de Configuração dos Dispositivos do Veículo">Relatório de Configuração dos Dispositivos do Veículo</option>
+                        <option value="Relatório de Configuração de Eventos do Veículo">Relatório de Configuração de Eventos do Veículo</option>
+                        <option value="Relatório de veículos por dados baixados">Relatório de veículos por dados baixados</option>
+                        <option value="Relatório de Veículos por Tipo de Unidade">Relatório de Veículos por Tipo de Unidade</option>
+                        <option value="Relatório da lista de ativos">Relatório da lista de ativos</option>
+                        <option value="Relatório de diagnóstico de gestão de ativos">Relatório de diagnóstico de gestão de ativos</option>
+                        <option value="Relatório de status móvel atual">Relatório de status móvel atual</option>
+                        <option value="Relatório de validação dos certificados dos motoristas">Relatório de validação dos certificados dos motoristas</option>
+                        <option value="Relatório de vencimento das licenças de motorista">Relatório de vencimento das licenças de motorista</option>
+                        <option value="Relatório de lista de motoristas">Relatório de lista de motoristas</option>
+                        <option value="Relatório de eventos do info hub">Relatório de eventos do info hub</option>
+                        <option value="Relatório detalhado do trabalho">Relatório detalhado do trabalho</option>
+                        <option value="Relatório sumarizado e detalhado por modelo e data">Relatório sumarizado e detalhado por modelo e data</option>
+                        <option value="Relatório de mudanças de fuso horário">Relatório de mudanças de fuso horário</option>
                     </optgroup>
                     <optgroup label="Relatório de movimento">
-                        <option value="">Relatório de visita diario</option>
-                        <option value="">Relatório de visão geral de localização </option>
-                        <option value="">Relatório de localização não visitadas</option>
-                        <option value="">Relatório geral de visitas</option>
-                        <option value="">Relatório resumido de movimentos</option>
+                        <option value="Relatório de visita diario">Relatório de visita diario</option>
+                        <option value="Relatório de visão geral de localização">Relatório de visão geral de localização </option>
+                        <option value="Relatório de localização não visitadas">Relatório de localização não visitadas</option>
+                        <option value="Relatório geral de visitas">Relatório geral de visitas</option>
+                        <option value="Relatório resumido de movimentos">Relatório resumido de movimentos</option>
                     </optgroup>
                     <optgroup label="Relatório de RAG">
-                        <option value="">Relatório RAG (Verde, amarelo, verde) diário detalhado</option>
-                        <option value="">Relatório RAG resumido e detalhado </option>
-                        <option value="">Relatório de comportamento do motorista</option>
-                        <option value="">Relatório RAG Diário</option>
-                        <option value="">Rag Plus Daily Report</option>
-                        <option value="">Relatório RAG Resumido</option>
-                        <option value="">Relatório RAG Anual</option>
+                        <option value="Relatório RAG (Verde, amarelo, verde) diário detalhado">Relatório RAG (Verde, amarelo, verde) diário detalhado</option>
+                        <option value="Relatório RAG resumido e detalhado">Relatório RAG resumido e detalhado </option>
+                        <option value="Relatório de comportamento do motorista">Relatório de comportamento do motorista</option>
+                        <option value="Relatório RAG Diário">Relatório RAG Diário</option>
+                        <option value="Rag Plus Daily Report">Rag Plus Daily Report</option>
+                        <option value="Relatório RAG Resumido">Relatório RAG Resumido</option>
+                        <option value="Relatório RAG Anual">Relatório RAG Anual</option>
                     </optgroup>
                     <optgroup label="Relatório de pontuação">
-                        <option value="">Relatório de pontuação avançada</option>
-                        <option value="">Relatório diário de desempenho de condução</option>
-                        <option value="">Relatório detalhado de desempenho de condução</option>
-                        <option value="">Relatório Debrief do motorista</option>
-                        <option value="">Relatório detalhado de classificação de motorista</option>
-                        <option value="">Relatório de classificação de motorista</option>
-                        <option value="">Relatório Scorecard de motorista</option>
-                        <option value="">Relatório de pontuação Flexivel Scorecard</option>
-                        <option value="">Relatório diário do RAG flexível</option>
-                        <option value="">Relatório resumido do RAG flexível</option>
-                        <option value="">Relatório acumulado do ano do RAG flexível</option>
-                        <option value="">Relatório mensal de desempenho de condução</option>
-                        <option value="">Relatório mensal de tendências</option>
-                        <option value="">Relatório de tendência de pontuação padrão e de erros de condução</option>
-                        <option value="">Relatório Padrão de Pontuação</option>
-                        <option value="">Relatório diário de desempenho de condução</option>
+                        <option value="Relatório de pontuação avançada">Relatório de pontuação avançada</option>
+                        <option value="Relatório diário de desempenho de condução">Relatório diário de desempenho de condução</option>
+                        <option value="Relatório detalhado de desempenho de condução">Relatório detalhado de desempenho de condução</option>
+                        <option value="Relatório Debrief do motorista">Relatório Debrief do motorista</option>
+                        <option value="Relatório detalhado de classificação de motorista">Relatório detalhado de classificação de motorista</option>
+                        <option value="Relatório de classificação de motorista">Relatório de classificação de motorista</option>
+                        <option value="Relatório Scorecard de motorista">Relatório Scorecard de motorista</option>
+                        <option value="Relatório de pontuação Flexivel Scorecard">Relatório de pontuação Flexivel Scorecard</option>
+                        <option value="Relatório diário do RAG flexível">Relatório diário do RAG flexível</option>
+                        <option value="Relatório resumido do RAG flexível">Relatório resumido do RAG flexível</option>
+                        <option value="Relatório acumulado do ano do RAG flexível">Relatório acumulado do ano do RAG flexível</option>
+                        <option value="Relatório mensal de desempenho de condução">Relatório mensal de desempenho de condução</option>
+                        <option value="Relatório mensal de tendências">Relatório mensal de tendências</option>
+                        <option value="Relatório de tendência de pontuação padrão e de erros de condução">Relatório de tendência de pontuação padrão e de erros de condução</option>
+                        <option value="Relatório Padrão de Pontuação">Relatório Padrão de Pontuação</option>
+                        <option value="Relatório diário de desempenho de condução">Relatório diário de desempenho de condução</option>
                     </optgroup>
                     <optgroup label="Relatório de viagem">
-                        <option value="">Relatório resumido de performance do veículo</option>
-                        <option value="">Relatório de utilização do ativo</option>
-                        <option value="">Relatório diário de viagem</option>
-                        <option value="">Relatório diário de utilização</option>
-                        <option value="">Relatório detalhado de viagem</option>
-                        <option value="">Relatório de localização de viagem</option>
-                        <option value="">Relatório Logbook</option>
-                        <option value="">Relatório Mensal de Viagem</option>
-                        <option value="">Relatório Resumido de Viagem</option>
+                        <option value="Relatório resumido de performance do veículo">Relatório resumido de performance do veículo</option>
+                        <option value="Relatório de utilização do ativo">Relatório de utilização do ativo</option>
+                        <option value="Relatório diário de viagem">Relatório diário de viagem</option>
+                        <option value="Relatório diário de utilização">Relatório diário de utilização</option>
+                        <option value="Relatório detalhado de viagem">Relatório detalhado de viagem</option>
+                        <option value="Relatório de localização de viagem">Relatório de localização de viagem</option>
+                        <option value="Relatório Logbook">Relatório Logbook</option>
+                        <option value="Relatório Mensal de Viagem">Relatório Mensal de Viagem</option>
+                        <option value="Relatório Resumido de Viagem">Relatório Resumido de Viagem</option>
                     </optgroup>
                 </select>
             </label>
             <label class="newTicketProblemasRelatorioPeriodo" for="">
-                Periodo selecionado:
+                <hr>
+                <strong> Periodo selecionado: </strong>
                 <div class="text-center">
                     <span>
-                        De: <input class="form-control" type="datetime-local" name="" id="">
+                        De: <input class="form-control" type="datetime-local" name="NTPR_periodoDe" id="">
                     </span>
                     <span>
-                        Até <input class="form-control" type="datetime-local">
+                        Até <input class="form-control" type="datetime-local" name="NTPR_periodoAte">
                     </span>
                 </div>
             </label>
             <label class="newTicketProblemasRelatorioVeiGar" for="">
+                <hr>
                 Por favor nos informe quais veiculos/garagens foram selecionados:
-                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="NTPR_garagemPermissao" id="" cols="30" rows="5"></textarea>
             </label>
         </div>
     </div>
@@ -415,30 +440,37 @@
     <div hidden id="newTicketLeituraDeDadosContainer">
         <div class="newTicketLeituraDeDados">
             <label class="newTicketPlaca" for="">
-                Placa <input class="form-control" type="text" name="" id="">
+                Placa <input class="form-control" type="text" name="NTLD_placa" id="">
             </label>
+            <hr>
             <label for="">
                 <p>Por favor informe que tipo de leitura <strong> NÃO </strong> esta sendo realizada </p> 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="NTLD_tipoDados" value="Leitura de combustivel">
                     <label class="form-check-label" for="inlineCheckbox1">Leitura de combustivel</label>
                 </div>
                     <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="NTLD_tipoDados" value="Leitura de velocidade e RPM">
                     <label class="form-check-label" for="inlineCheckbox2">Leitura de velocidade ou RPM</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTLD_tipoDados" value="Dados de viagem">
                     <label class="form-check-label" for="inlineCheckbox3">Dados de viagem</label>
                 </div>
             </label>
+            <hr>
             <label class="newTicketLeituraDeDadosPeriodo" for="">
                 <span>Por favor informe o periodo que apresentou problemas:
                     <div>
-                        <span>De: <input class="form-control" type="datetime-local" name="" id=""></span>
-                        <span>Até: <input class="form-control" type="datetime-local" name="" id=""></span>
+                        <span>De: <input class="form-control" type="datetime-local" name="NTLD_periodoDe" id=""></span>
+                        <span>Até: <input class="form-control" type="datetime-local" name="NTLD_periodoAte" id=""></span>
                     </div>
                 </span>
+            </label>
+            <hr>
+            <label for="">
+                Informações adicionais:
+                <textarea class="form-control" name="NTLD_infoAdicional" id="" cols="30" rows="5"></textarea>
             </label>
         </div>
     </div>
@@ -448,31 +480,31 @@
             <label for="">
                 <p>Informe as plataformas necessárias para realizar o procedimento!</p>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="NTPI_plataforma" value="CRM">
                     <label class="form-check-label" for="inlineCheckbox1">CRM</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="NTPI_plataforma" value="Mix Telematics">
                     <label class="form-check-label" for="inlineCheckbox2">MIX Telematics</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTPI_plataforma" value="Getrak">
                     <label class="form-check-label" for="inlineCheckbox3">Getrak</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTPI_plataforma" value="App Wikidados">
                     <label class="form-check-label" for="inlineCheckbox3">App Wikidados</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTPI_plataforma" value="Cameras Wikidados">
                     <label class="form-check-label" for="inlineCheckbox3">Cameras Wikidados</label>
                 </div>
             </label>
+            <hr>
             <label for="">
                 Breve descrição do procedimento
-                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="NTPI_descricaoProcedimento" id="" cols="30" rows="5"></textarea>
             </label>
-            <input type="submit" value="Abrir chamado" class="btn btn-success Abrir-chamado">
         </div>
     </div>
 
@@ -480,11 +512,11 @@
         <div class="newTicketTesteCAN">
             <label for="">
                 Informe mascara de CAN a ser testada:
-                <input class="form-control" type="text" name="" id="">
+                <input class="form-control" type="text" name="NTTC_mascara" id="">
             </label>
             <label for="">
                 Informe marca dos veiculos:
-                <select class="form-select" name="" id="">
+                <select class="form-select" name="NTTC_fabricante" id="">
                     <option value=""> SCANIA </option>
                     <option value=""> MERCEDES BENZ </option>
                     <option value=""> DAF </option>
@@ -496,17 +528,17 @@
             </label>
             <label for="">
                 Informe modelo do veiculo a ser testado!
-                <input class="form-control" type="text" name="" id="">
+                <input class="form-control" type="text" name="NTTC_modelo" id="">
             </label>
             <label for="">
                 Informe ano do veiculo
-                <input class="form-control" type="number" name="" id="">
+                <input class="form-control" type="number" name="NTTC_ano" id="">
             </label>
             <label id="newTicketTesteCANContainerAdicionalInfo" for="">
+                <hr>
                 Informacoes adicionais:
-                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="NTTC_infoAdicional" id="" cols="30" rows="5"></textarea>
             </label>
-            <input type="submit" class="btn btn-success Abrir-chamado" value="Abrir chamado">
         </div>
     </div>
 
@@ -514,36 +546,36 @@
         <div class="newTicketRegistroPassageiro">
             <label for="">
                 Informe nome completo do passageiro
-                <input class="form-control" type="text" name="" id="">
+                <input class="form-control" type="text" name="NTRP_nome" id="">
             </label>
             <label for="">
                 Informe a tag do passageiro
-                <input class="form-control" name="" type="number">
+                <input class="form-control" name="NTRP_tag" type="number">
             </label>
             <label for="">
                 Informe a matricula do passageiro
-                <input class="form-control" type="number" name="" id="">
+                <input class="form-control" type="number" name="NTRP_matricula" id="">
             </label>
+            <hr>
             <label for="">
                <p> Informe quais empresas este passageiro pode ter utilizado </p> 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="NTRP_empresa" value="Italianinha Tur">
                     <label class="form-check-label" for="inlineCheckbox1">Italianinha Tur</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="NTRP_empresa" value="SS Transportes">
                     <label class="form-check-label" for="inlineCheckbox2">SS Transportes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTRP_empresa" value="Transgiro">
                     <label class="form-check-label" for="inlineCheckbox3">Transgiro</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTRP_empresa" value="Expresso São José">
                     <label class="form-check-label" for="inlineCheckbox3">Expresso São José</label>
                 </div>
             </label>
-            <input class="btn btn-success Abrir-chamado" type="submit" name="" id="" value="Abrir chamado">
         </div>
     </div>
 
@@ -557,40 +589,44 @@
         <div class="newTicketValidacaoEventos">
             <label for="">
                 Informe nome do evento:
-                <input class="form-control" type="text" name="" > 
+                <input class="form-control" type="text" name="NTVE_nome" > 
             </label>
             <label for="">
                 Informe placa do veiculo
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" name="NTVE_placa">
             </label>
             <label class="newTicketValidacaoEventosPeriodo" for="">
+                <hr>
                 Informe o periodo a ser analisado:
                 <div>
-                    <span>De:<input class="form-control" type="datetime-local" name="" id=""></span>
-                    <span>Até: <input class="form-control" type="datetime-local" name="" id=""></span>
+                    <span>De:<input class="form-control" type="datetime-local" name="NTVE_periodoDe" id=""></span>
+                    <span>Até: <input class="form-control" type="datetime-local" name="NTVE_periodoAte" id=""></span>
                 </div>
             </label>
             <label class="newTicketValidacaoEventosAddInfo" for="">
+                <hr>
                 Informações adicionais:
-                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="NTVE_infoAdicional" id="" cols="30" rows="5"></textarea>
             </label>
-            <input type="submit" class="btn btn-success Abrir-chamado" value="Abrir Chamado">
         </div>
     </div>
 
     <div hidden id="newTicketVeiculoApitandoContainer">
         <div class="newTicketVeiculoApitando">
-            <label for="">
-                Informe a placa do veiculo:
-                <input class="form-control" type="text">
-            </label>
-            <label for="">
-                Informe o <strong>DATA E HORA </strong> aproximada onde ocorreu o ultimo apito indevido:
-                <input class="form-control text-center" type="datetime-local">
-            </label>
+            <div>
+                <label for="">
+                    Informe a placa do veiculo:
+                    <input class="form-control" type="text" name="NTVA_placa">
+                </label>
+                <label for="">
+                    Informe o <strong>DATA E HORA </strong> aproximada onde ocorreu o ultimo apito indevido:
+                    <input class="form-control text-center" type="datetime-local" name="NTVA_data">
+                </label>
+            </div>
             <label class="newTicketVeiculoApitandoInfoAdicionais" for="">
+                <hr>
                 Informações adicionais
-                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="NTVA_infoAdicional" id="" cols="30" rows="5"></textarea>
                 <small> Por favor coloque quais circunstancias este veiculo estava/esta apitando indevidamente </small>
             </label>
         </div>
@@ -599,28 +635,29 @@
     <div hidden id="newTicketAlteracaoEventoContainer">
         <div class="newTicketAlteracaoEvento">
             <label for="">Informe a placa
-                <input class="form-control" type="text" name="" id="">
+                <input class="form-control" type="text" name="NTAE_placa" id="">
             </label>
             <label for="">Nome do evento
-                <input class="form-control" type="text" name="" id="">
+                <input class="form-control" type="text" name="NTAE_evento" id="">
             </label>
-            <label class="newTicketAlteracaoEventoRelationship " for="">
-                A alteração esta relacionada a:
-                <div class="newTicketAlteracaoEventoRelationshipDiv">
+            <label class="newTicketAlteracaoEventoRelationship" for="">
+                <hr>
+                <span>Oque voce deseja alterar? </span> 
+                <div class="newTicketAlteracaoEventoRelationshipParametro text-center">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                        <input class="form-check-input" type="radio" name="NTAE_tipoAlteracao" id="flexRadioDefault1" value="Parametro de evento" checked>
                         <label class="form-check-label" for="flexRadioDefault1">
                           Parametro de evento
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <input class="form-check-input" type="radio" name="NTAE_tipoAlteracao" id="flexRadioDefault2" value="Atraso de registro">
                         <label class="form-check-label" for="flexRadioDefault2">
                          Atraso de registro
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                        <input class="form-check-input" type="radio" name="NTAE_tipoAlteracao" id="flexRadioDefault3" value="Atraso de campainha">
                         <label class="form-check-label" for="flexRadioDefault3">
                           Atraso de campainha
                         </label>
@@ -628,67 +665,71 @@
                 </div>
             </label>
             <label class="newTicketAlteracaoEventoNovoValor" for="">
+                <hr style="grid-column: -1/1;">
                 <div>
                     <span>Valor atual</span>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" name="NTAE_valorAtual">
                 </div>
                 <div>
                     <span>Novo valor</span>
-                    <input class="form-control" type="text" name="" id="">
+                    <input class="form-control" type="text" name="NTAE_valorNovo" id="">
                 </div>
             </label>
             <label class="newTicketAlteracaoEventoJustificativa" for="">
+                <hr>
                 <span>Favor informar a justificativa para alteração deste evento!</span>
-                <textarea class="form-control" name="" id="" cols="40" rows="5"></textarea>
+                <textarea class="form-control" name="NTAE_justificativa" id="" cols="40" rows="5"></textarea>
             </label>
-            <input type="submit" name="" id="" class="btn btn-success Abrir-chamado" value="Abrir Chamado">
-        </div>
+         </div>
     </div>
 
     <div hidden id="newTicketLiberacaoVeiculoContainer">
         <div class="newTicketLiberacaoVeiculo">
             <label for="">
                 Informe a placa:
-                <input class="form-control" type="text" name="" id="">
+                <input class="form-control" type="text" name="NTLV_placa" id="">
             </label>
             <label for="">
                 Favor informar <strong>ID DA CHAVE</strong> de motorista a ser utilizada:
-                <input class="form-control" type="number" name="" id="">
+                <input class="form-control" type="number" name="NTLV_motorista" id="">
             </label>
+            <hr style="grid-column: -1/1;">
             <div class="newTicketLiberacaoVeiculoContato text-center">
                 <span>Favor informar contato da pessoa mais proxima ao veiculo: </span> 
                 <label for="">
                     <div>
                        Nome:
-                        <input class="form-control" type="text" name="" id="">
+                        <input class="form-control" type="text" name="NTLV_nomeContato" id="">
                     </div>
                 </label>
                 <label for="">
                     <div>
                         Numero de telefone:
-                        <input class="form-control" type="number" name="" id="">
+                        <input class="form-control" type="number" name="NTLV_telefoneContato" id="">
                     </div>
                 </label>
             </div>
+            <hr style="grid-column: -1/1;">
             <label class="newTicketLiberacaoVeiculoJumper" for="">
                 <span>Se necessário, você nos autoriza a auxiliar a pessoa informada no contato a realizar um JUMPER no relé?</span>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="NTLV_jumper" id="flexRadioDefault1" value="Sim">
+                    <label class="" for="flexRadioDefault1">
                       Sim
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="NTLV_jumper" id="flexRadioDefault2" value="Não">
+                    <label class="" for="flexRadioDefault2">
                       Não
                     </label>
                 </div>
                 <small>Este procedimento requer um eletricista ou deve ser feito em contato com um de nossos técnicos, isso só deve ser feito em ultimos casos!</small>
             </label>
-            <label for="">
+            <label for="" class="newTicketLiberacaoVeiculoInfoAdicional">
+                <hr>
                 Informações adicionais
-                <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="NTLV_infoAdicional" id="" cols="30" rows="10"></textarea>
             </label>
         </div>
     </div>

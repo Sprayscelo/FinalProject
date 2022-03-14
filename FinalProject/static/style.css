@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle&family=Nunito+Sans:wght@200&family=Playfair+Display&family=Titillium+Web&display=swap');
-body{
+body, html{
     margin: 0%;
+    height: 100%;
 }
 
 * {
@@ -60,6 +61,7 @@ img {
     background-color: #004346;
     position: absolute;
     height: 100%;
+    z-index: 1;
 }
 
 [data-menu="closed"] {
