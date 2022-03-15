@@ -11,15 +11,13 @@
 .loginTela {
     display: grid;
     place-items: center;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: 1fr 70% ;
     color: white;
-    min-width: 50vh;
-    min-height: 50vh;
-    width: 60vh;
-    height: 60vh;
+    width: 60%;
+    height: 50%;
     background-color: white;
     border-radius: 10px;
-    position: relative;
+    position: static;
     box-shadow: 0px 0px 15px 2px #19e984;
 }
 
@@ -43,35 +41,54 @@
 
 
 .loginTelaInfo {
-    display: grid;
-    grid-template-rows: repeat(4, minmax(150px, calc(4/100%)));
-    place-items: center;
-    align-items: center;
     width: 100%;
     height: 100%;
     background-image: url('https://i.gifer.com/3WyW.gif');
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position: 0px -75px;
+    /* background-position: 0px -75px; */
     background-color: #050F1A;
     border-radius: 0px 0px 10px 10px;
     padding: 15px;
-    transition: all 1s cubic-bezier(.68,-0.55,.45,.61);
+    transition: background 1s cubic-bezier(.68,-0.55,.45,.61);
+}
+
+.loginTelaInfo label {
+    width: 60%;
+    min-width: fit-content;
+}
+
+i {
+    top: 0;
+    left: 0;
+    transform: translateY(25%);
+}
+
+.loginTelaInfo input:focus {
+    background-color: #102f50;
+    transition: all 0.3s ease;
+}
+
+.loginTelaInfo input {
+    margin-top: 5px;
 }
 
 .loginTelaInfo img {
     padding: 30px !important;
 }
 
-.loginTelaInfo i {
+.email span, .senha span {
+    text-align: left;
+    position: relative;
+}
+
+.email, .senha {
+    height: fit-content;
+    margin: 15px;
 }
 
 .containerDaIMG {
     padding: 20px;
-}
-
-.loginTelaInfo div > div{
-    padding: 10px;
 }
 
 .loginTelaInfoLogar {
@@ -89,9 +106,5 @@
 
 .loginTelaInfoLogar button:hover {
     background-color: #20e686;
-    transition: all 1s ease;
-}
-
-span {
-    display: inline;
+    transition: all 0.3s ease;
 }
