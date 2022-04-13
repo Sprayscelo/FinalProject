@@ -1,37 +1,42 @@
 {% load static %}
 
 {% block login %}
+<!-- LOGIN -->
     <div class="loginContainer">
         <div class="loginTela">
             <div class="containerDaIMG">
                 <img src="https://app.wikidados.com.br/statics/img/logo/logo_horizontal.png" alt="" class="img-fluid">
             </div>
-            <div class="loginTelaInfo text-center">
+            <form class="loginTelaInfo text-center" method="POST">
+                {% csrf_token %}
                 <div class="email">
                     <label> 
                         <span>
                             <i class="material-icons"  >mail</i>
                             E-mail:
                         </span> 
-                        <input type="email" name="" class="">
+                        <input required type="email" name="loginEmail" class="">
                     </label>
                 </div>
                 <div class="senha">
                     <label>
-                        <span style="vertical-align: middle;">
-                            <i class="material-icons"  >password</i> 
+                        <span>
+                            <i class="material-icons">password</i> 
                             Senha:
                         </span> 
-                        <input type="password" name="" id="">
+                        <input required type="password" name="loginPassword" id="">
                     </label>
                 </div>
                 <div class="loginTelaInfoLogar">
                     <button class="btn btn-success" type="submit">Logar</button>
                 </div>
-                <div>
+                <div class="loginTelaInfoEsqueciSenha">
                     <a href="">Esqueci minha senha</a>
                 </div>
-            </div>
+                <div class="loginTelaInfoRegistrar">
+                    <a href="{% url 'register' %}">Registrar-se</a>
+                </div>
+            </form>
         </div>
     </div>
     <link rel="stylesheet" href="{% static 'login.css' %}">

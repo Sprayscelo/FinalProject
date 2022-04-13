@@ -1,22 +1,11 @@
 from datetime import time
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models.fields import CharField, DateTimeField, related
+from django.db.models.fields import CharField, DateTimeField
 from django.utils import timezone
 from .choices import *
 import datetime
-
-class User(AbstractUser):
-    pass
-
-class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
-    content = models.TextField(default="")
-    createDate = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        formatDate = self.createDate.strftime('%d/%m/%Y - %H:%M:%S')
-        return f"{self.user} | {self.content} | Related Tickets ID`s: {[i.id for i in self.relatedTicket.all()]} | Created at {formatDate}"
 
 class Costumer(models.Model):
     
@@ -31,10 +20,21 @@ class Costumer(models.Model):
     city = models.CharField(max_length=50, default="")
     address = models.CharField(max_length=50, default="")
     zCode = models.CharField(max_length=8, default="")
-    comments = models.ManyToManyField(Comment, default="", blank=True, related_name="relatedCostumer")
 
     def __str__(self):
-        return f"{self.id} {self.name}"
+        return f"{self.name}"
+
+class User(AbstractUser):
+    costumer = models.ForeignKey(Costumer, on_delete=models.CASCADE, default="", blank=True, null=True)
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
+    content = models.TextField(default="")
+    createDate = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        formatDate = self.createDate.strftime('%d/%m/%Y - %H:%M:%S')
+        return f"{self.user} | {self.content} | Related Tickets ID`s: {[i.id for i in self.relatedTicket.all()]} | Created at {formatDate}"
 
 class Ticket(models.Model):
     
@@ -69,9 +69,9 @@ class Ticket(models.Model):
             "costumer": self.costumer.clientName,
             "plate": self.plate,
             "comments": self.comment,
-            "responsible": self.responsible.username,
+            "responsible": self.responsible.user_name,
             "createDate": self.createDate.strftime("%m/%d/%Y, %H:%M:%S"),
-            "createdBy": self.createdBy.username,
+            "createdBy": self.createdBy.user_name,
             "endDate": self.endDate
         }
 

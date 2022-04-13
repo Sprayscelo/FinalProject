@@ -14,8 +14,13 @@ body, html{
 #mainHeader {
     background-color: #004346;
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 50px 1fr 50px;
+    white-space: nowrap;
+}
 
+.logout {
+    text-decoration: none;
+    text-align: end;
 }
 
 header span {

@@ -14,7 +14,8 @@
 <body>
     <header id="mainHeader">
         <span data-status="closed" onclick="transition()" class="material-icons menu-icon"> menu </span>
-        <span class="text-center"> <strong> Usuario </strong>, Bem-vindo ao portal wikidados</span>
+        <span class="text-center"> <strong> {{ request.user|capfirst }} </strong>, Bem-vindo ao portal wikidados</span>
+        <a href="{% url 'logout' %}"><span class="material-icons logout"> logout </span> </a>
     </header>
     <div data-menu="closed" class="mainNavContainer">
         <div class="navContainer">
@@ -118,6 +119,10 @@
         
         {% block services %}
         {% endblock%}
+
+        {% block register %}
+        {% endblock %}
+        
     </div>
 </body>
 </html>

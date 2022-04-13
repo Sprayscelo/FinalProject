@@ -3,7 +3,7 @@ body, html {
     height: 100%;
 }
 
-.loginContainer {
+.registerContainer {
     z-index: 999;
     position: absolute;
     width: 100vw;
@@ -15,14 +15,14 @@ body, html {
     background-image: url('https://www.wikidados.com.br/assets/wiki/img/produtos/home/fundo_1.jpg');
 }
 
-.loginTela {
+.registerTela {
     margin: auto;
     position: relative;
     color: white;
-    height: 50%;
+    height: 450px;
     min-height: 430px;
-    max-width: 455px ;
-    min-width: 300px;
+    max-width: 500px ;
+    min-width: 410px;
     border-radius: 10px;
     background-color: #050F1A;
     box-shadow: 0px 0px 15px 2px #19e984;
@@ -35,7 +35,7 @@ body, html {
 }
 
 
-.loginTela input {
+.registerTela input {
     width: 100%;
     position: relative;
     border-radius: 5px;
@@ -43,29 +43,26 @@ body, html {
     border-color: #b9f5d8;
 }
 
-.loginTela span {
+.registerTela span {
     display: block;
 }
 
-.loginTelaInfo {
+.registerTelaInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     position: relative;
     border-radius: 0px 0px 10px 10px;
     padding: 15px;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    transform: translateY(40%);
+    transform: translateY(50%);
 }
 
-.loginTelaInfo label {
+.registerTelaInfo label {
     width: 60%;
     min-width: fit-content;
     font-weight: bold;
     min-height: fit-content;
-}
-
-.loginTelaInfoRegistrar {
-    padding-top: 20px;
-    transform: scale(103%);
 }
 
 i {
@@ -74,28 +71,32 @@ i {
     transform: translateY(25%);
 }
 
-.loginTelaInfo input {
+.registerTelaInfo input {
     margin-top: 5px;
 }
 
-.loginTelaInfo a {
+.registerTelaInfo a {
     color: #19e984;
     font-weight: bold;
     text-decoration: none;
 }
 
-.loginTelaInfo a:hover {
-    color: #19e984;
+.registerTelaInfoEsqueciSenha {
+    text-shadow: #b9f5d8;
 }
 
-.email span, .senha span {
+.email span, .senha span, .confirmarSenha span, .username span  {
     text-align: left;
 }
 
-.email, .senha {
+.email, .senha, .confirmarSenha, .username {
     /* height: fit-content; */
     margin: 15px;
     position: relative;
+}
+
+.confirmarSenha, .senha, .email {
+    white-space: nowrap;
 }
 
 .containerDaIMG {
@@ -109,13 +110,14 @@ i {
     border-top-left-radius: 10px;
 }
 
-.loginTelaInfoLogar {
+.registerTelaInfoRegistrar {
     width: 100%;
     position: relative;
     margin-bottom: 10px;
+    grid-column: -1/1;
 }
 
-.loginTelaInfoLogar button {
+.registerTelaInfoRegistrar button {
     width: 40%;
     background-color: #102f50; 
     font-weight: bold;
@@ -123,7 +125,11 @@ i {
 
 }
 
-.loginTelaInfoLogar button:hover {
+.registerTelaInfoRegistrar button:hover {
     background-color: #20e686;
     transition: all 0.3s ease;
+}
+
+.registerTelaInfoLogin {
+    grid-column: -1/1;
 }

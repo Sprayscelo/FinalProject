@@ -1,7 +1,13 @@
-from wsgiref.util import request_uri
+from tokenize import group
+from turtle import title
+from urllib import response
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.fields import json
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from .models import *
 from django.http import JsonResponse
 import json
@@ -9,6 +15,7 @@ from .choices import *
 from django.utils import timezone
 from django.urls import reverse
 from django.utils.dateparse import parse_datetime
+import random
 
 Users = User.objects.all()
 
@@ -20,8 +27,25 @@ def newComment(request, moduleID, module):
          CommentLink.comments.add(newComment)
          CommentLink.save()
 
+def logout_view(request):
+   logout(request)
+   return HttpResponseRedirect(reverse("default"))
+
 def index(request):
-   return render(request, "final/login.html")
+   if request.method == "POST":
+      email = request.POST["loginEmail"]
+      senha = request.POST["loginPassword"]
+      loginUser = User.objects.get(email=email)
+      user = authenticate(request, username=loginUser.username, password=senha)
+      if user is not None:
+         login(request, user)
+         return HttpResponseRedirect(reverse("tickets"))
+      else:
+         return render(request, "final/login.html", {
+            "message": "Email ou senha invalido"
+         })
+   else:
+      return render(request, "final/login.html")
 
 def tickets(request):
    return render(request, "final/tickets.html", {
@@ -171,9 +195,201 @@ def servicesDetails(request, serviceID):
    })
 
 def newTicket(request):
+   usuarioAtivo = User.objects.get(username=request.user)
+   responsavel = random.choices([int(us.id) for us in Users])
+   if request.method == "POST":
+      tipoChamado = request.POST["tipoChamado"]
+      if int(tipoChamado) in [1,2,3,4,5,6,7]:
+         match int(tipoChamado):          
+            case 1:
+               novoTicket = Ticket(
+               tittle="Alteração/Correção de placa",
+               priority=1, 
+               group=ticketGroup[0], 
+               status=ticketStatusChoices[0],
+               description=f'Antiga placa: {request.POST["NTAP_placa"]}\n\nNova placa: {request.POST["NTAP_novaPlaca"]}\n\nInformacões adicionais: {request.POST["NTAP_infoAdicional"]}',
+               costumer=usuarioAtivo.costumer,
+               plate=request.POST["NTAP_placa"],
+               responsible=User.objects.get(id=responsavel[0]),
+               createdBy=request.user,
+               score=sum([1, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+            
+            case 2:
+               novoTicket = Ticket(
+                  tittle="Alteração/correção de descricao",
+                  priority=1,
+                  group=ticketGroup[0],
+                  status=ticketStatusChoices[0],
+                  description=f'Descrição Atual: {request.POST["NTAD_descricao"]}\n\n Nova descricao: {request.POST["NTAD_novaDescricao"]}\n\n Informações Adicionais: {request.POST["NTAD_infoAdicional"]}',
+                  costumer=usuarioAtivo.costumer,
+                  plate="",
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([1, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+            
+            case 3:
+               novoTicket = Ticket(
+                  tittle="Relatorio de jornada de motorista",
+                  priority=1,
+                  group=ticketGroup[0],
+                  status=ticketStatusChoices[0],
+                  description=f'Nome do motorista: {request.POST["NTJ_motorista"]}\n\n De: {request.POST["NTJ_dataDe"]} Até: {request.POST["NTJ_dataAte"]}\n\n O relatório deve ser separado por {request.POST["NTJ_separacao"]}\n\n Informações adicionais: {request.POST["NTJ_infoAdicional"]}',
+                  costumer=usuarioAtivo.costumer,
+                  plate="",
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([1, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+            
+            case 4:
+               novoTicket = Ticket(
+                  tittle="Alteração de meta de consumo",
+                  priority=1,
+                  group=ticketGroup[0],
+                  status=ticketStatusChoices[0],
+                  description=f'Meta desejada: {request.POST["NTAMC_meta"]}\n\nInformações adicionais: {request.POST["NTAMC_infoAdicional"]}\n\n',
+                  costumer=usuarioAtivo.costumer,
+                  plate=request.POST["NTAMC_placa"],
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([1, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+            
+            case 5:
+               plat = request.POST.getlist("NTCU_plataforma")
+               platString = ", ".join(plat)
+               novoTicket = Ticket(
+                  tittle="Criação de usuario",
+                  priority=1,
+                  group=ticketGroup[0],
+                  status=ticketStatusChoices[0],
+                  description=f'Nome de completo: {request.POST["NTCU_nome"]}\n\nEmail: {request.POST["NTCU_email"]}\n\nPlataforma: {platString}\n\nPermissão de garagem: {request.POST["NTCU_permissaoGaragem"]}\n\nCopiar permissão de: {request.POST["NTCU_copiarPermissao"]}',
+                  costumer=usuarioAtivo.costumer,
+                  plate="",
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([1, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+            
+            case 6:
+               novoTicket = Ticket(
+                  tittle="Bloqueio de usuario",
+                  priority=1,
+                  group=ticketGroup[0],
+                  status=ticketStatusChoices[0],
+                  description=f'E-mail: {request.POST["NTBU_email"]}\n\nPlataformas: {", ".join(request.POST.getlist("NTBU_plataforma"))}\n\nMotivo: {request.POST["NTBU_motivo"]}',
+                  costumer=usuarioAtivo.costumer,
+                  plate="",
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([1, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+            
+            case 7:
+               novoTicket = Ticket(
+                  tittle="Veiculo sem comunicação",
+                  priority=1,
+                  group=ticketGroup[0],
+                  status=ticketStatusChoices[0],
+                  description=f'Veiculo foi utilizado após a ultima data de comunicação?\nR:{request.POST.getlist("NTVC_utilizado")}\n\nSeu veiculo passou por alguma mecanica, auto-eletrica ou qualquer tipo de manutenção recentemente?\n R: {request.POST["NTVC_mecanica"]}\n\nMotivo: {request.POST["NTVC_infoAdicional"]}',
+                  costumer=usuarioAtivo.costumer,
+                  plate=request.POST["NTVC_placa"],
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([1, int(usuarioAtivo.costumer.priority)])
+               )
+            
+            case 8:
+               novoTicket = Ticket(
+                  tittle="Treinamento",
+                  priority=2,
+                  group=ticketGroup[0],
+                  status=ticketStatusChoices[0],
+                  description=f'Data sugerida pelo cliente: {request.POST["NTT_data"]}\n\nPlataformas: {", ".join(request.POST["NTT_plataforma"])}\n\nInformações adicionais:{request.POST["NTT_infoAdicional"]}',
+                  costumer=usuarioAtivo.costumer,
+                  plate="",
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([2, int(usuarioAtivo.costumer.priority)])
+               )
+            case 9:
+               novoTicket = Ticket(
+                  tittle="Problemas com relatório",
+                  priority=2,
+                  group=ticketGroup[0],
+                  status=ticketStatusChoices[0],
+                  description=f'Relatório: {request.POST["NTPR_tipoRelatorio"]}\n\nPeriodo selecionado: {request.POST["NTPR_periodoDe"]}: até {request.POST["NTPR_periodoAte"]}\n\nVeiculos/motorista ou garagens selecionados:{request.POST["NTPR_garagemPermissao"]}',
+                  costumer=usuarioAtivo.costumer,
+                  plate="",
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([2, int(usuarioAtivo.costumer.priority)])
+               )
+            case 10:
+               novotTicket = Ticket(
+                  tittle="Problema de leitura de dados",
+                  priority=1,
+                  group=ticketGroup[0],
+                  status=ticketStatusChoices[0],
+                  description=f'Problema de leitura relacionado a {request.POST["NTLD_tipoDados"]}\n\n',
+                  costumer=usuarioAtivo.costumer,
+                  plate=f'{request.POST["NTLD_placa"]}',
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([2, int(usuarioAtivo.costumer.priority)])
+               )
+
+            case 11:
+               novoTicket = Ticket(
+                  title="Procedimentos internos",
+                  priority=2,
+                  group=ticketGroup[0],
+                  status=ticketStatusChoices[0],
+                  description=f'Plataformas {", ".join(request.POST.getlist("NTPI_plataforma"))}\n\nDescrição do procedimento: {request.POST["NTPI_descricaoProcedimento"]}',
+                  costumer=usuarioAtivo.costumer,
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([2, int(usuarioAtivo.costumer.priority)])
+               )
+            case 12:
+               novoTicket = Ticket(
+                  
+               )
+
    return render(request, "final/newTicket.html",{
-      "Users": Users
+      "Users": Users 
    })
 
+def register(request):
+   if request.method == "POST":
+      email = request.POST["registerEmail"]
+      username = request.POST["registerUsername"]
+      password = request.POST["registerPassword"]
+      confirmation = request.POST["registerConfirmarPassword"]
+      if password != confirmation:
+         return render(request, "final/register.html", {
+            "message": "As senhas devem ser iguais!"
+         })
+      try:
+         User.objects.get(email=email)
+         return render(request, "final/register.html", {
+            "message": "Email ja esta em uso"
+         })
+      except ObjectDoesNotExist:
+         user = User.objects.create_user(username, email, password)
+         user.save()
+         login(request, user)
+         return HttpResponseRedirect(reverse("tickets"))
+   else:
+      return render(request, 'final/register.html')
+   
 def newCostumer(request):
    return 0

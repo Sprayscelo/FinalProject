@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block newTicket%}
+{{ valor }}
 <div id="newTicketMainContainer">
     <div class="text-center">
         <h1 class="text-center">Abrir novo chamado</h1>
@@ -16,7 +17,7 @@
                 <div>
                     <label class="text-center" for=""> Por favor, selecione a categoria relacionada a sua solicitação!
                         <select data-selected="" class="form-control" name="tipoChamado" id="newTicketSelectOptions">
-                            <optgroup label="Nivel 1" >
+                            <optgroup label="Nivel 1">
                                 <option class="DefaultOption" selected value="0">Selecione uma opção</option>
                                 <option class="newTicketCategoriesOptions" value="1">Alteração/correção de placa</option>
                                 <option class="newTicketCategoriesOptions" value="2">Alteração/correção de descricao</option>
@@ -112,11 +113,11 @@
             <label style="display: block;">
                 <span style="display:block">Relatorio deve ser separado por:</span>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="NTJ_mes" id="inlineRadio1" value="option1">
+                    <input class="form-check-input" type="radio" name="NTJ_separacao" id="inlineRadio1" value="Mês">
                     <label class="form-check-label" for="inlineRadio1">Mês</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="NTJ_ano" id="inlineRadio2" value="option2">
+                    <input class="form-check-input" type="radio" name="NTJ_separacao" id="inlineRadio2" value="Ano">
                     <label class="form-check-label" for="inlineRadio2">Ano</label>
                 </div>
             </label>
@@ -168,19 +169,19 @@
                 <hr>
                 <strong style="display: block;">Plataforma</strong>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="NTCU_mixtelematics" value="option1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="NTCU_plataforma" value="Mix Telematics">
                     <label class="form-check-label" for="inlineCheckbox1">Mix Telematics</label>
                 </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="NTCU_appwikidados" value="option2">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="NTCU_plataforma" value="App Wikidados">
                     <label class="form-check-label" for="inlineCheckbox2">App Wikidados</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTCU_getrak" value="option3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTCU_plataforma" value="Getrak">
                     <label class="form-check-label" for="inlineCheckbox3">Getrak</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="NTCU_cameras" value="option4">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="NTCU_plataforma" value="Cameras Wikidados">
                     <label class="form-check-label" for="inlineCheckbox3">Cameras Wikidados</label>
                 </div>
             </div>
@@ -194,7 +195,7 @@
                 <span> Copiar permissão de: </span> 
                 <select class="form-select" name="NTCU_copiarPermissao" id="">
                     {% for user in Users%}
-                        <option value="">
+                        <option value="{{ user }}">
                             {{ user }}
                         </option>
                     {% endfor%}
@@ -212,19 +213,19 @@
             <div class="newTicketBloqueioUsuarioPlataformas">
                 <span style="display: block;">Plataforma</span>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="NTBU_mixtelematics" value="option1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="NTBU_plataforma" value="Mix Telematics">
                     <label class="form-check-label" for="inlineCheckbox1">Mix Telematics</label>
                 </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="NTBU_appwikidados" value="option2">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="NTBU_plataforma" value="App Wikidados">
                     <label class="form-check-label" for="inlineCheckbox2">App Wikidados</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTBU_getrak" value="option3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="NTBU_plataforma" value="Getrak">
                     <label class="form-check-label" for="inlineCheckbox3">Getrak</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="NTBU_cameras" value="option4">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="NTBU_plataforma" value="Cameras Wikidados">
                     <label class="form-check-label" for="inlineCheckbox3">Cameras Wikidados</label>
                 </div>
             </div>
