@@ -1,14 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Roboto:wght@500;700&display=swap');
+
+:root {
+    --cabecalho: #004346;
+    --fundo: #172a3a;
+    --letras: #09bc8a;
+    --opacidade: 0
+}
+
+#mainTicketDetailsContainer {
+    color: #09bc8a;
+    background-color: #172a3a;
+    height: 100%;
+}
+
+#ticketDetailsContainer {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1.8fr 1fr;
+    margin-top: 15px;
+    padding: 1em;
+}
+
+#TicketDetailsForm form label > textarea, #TicketDetailsForm form label > input, #TicketDetailsForm form label > select {
+    background-color: var(--cabecalho);
+    color: var(--letras);
+    border: solid .5px;
+    border-radius: 5px;
+}
+
 #TicketDetailsForm form  {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(2, minmax(150px, 1fr));  
-    font-family: 'Dongle', sans-serif;
-    font-family: 'Nunito Sans', sans-serif;
-    font-family: 'Playfair Display', serif;
-    font-family: 'Titillium Web', sans-serif;
     align-items: center;
     justify-items: center;
+}
 
+#TicketDetailsForm form * {
+    width: 100%;
+    font-size: 12px;
 }
 
 hr {
@@ -22,30 +52,38 @@ hr {
     grid-row: 4/5;
 }
 
-#TicketDetailsForm form * {
-    width: 100%;
+/* PARTE DO CODIGO PARA A APARENCIA DOS BOTÕES!!! */
+
+#ticketDetailsStatusContainer {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
 }
 
-#tickeDetailstStatus, #serviceOrderDetailsStatus {
-    border-radius: 5px;
-    margin: 10px 0 10px 0;
-    padding: 6px 12px 6px 12px;
-    min-width: 50px;
-}
 
+
+/* ------ */
 #ticketEditSubmit {
     grid-column: 1/-1;
     max-width: 30%;
     text-align: center;
-}
-
-#mainTicketDetailsContainer {
-    margin: 15px;
+    background-color: #09bc8a;
+    border: #09bc8a;
+    font-weight: bold;
 }
 
 #ticketDetailsSolution {
     width: 1fr;
     grid-column: 1/-1;
+}
+
+#adicionarComentario {
+    height: fit-content;
+    width: fit-content;
+    vertical-align: top;
+    background-color: var(--letras);
+    border: none;
 }
 
 /* NEW TICKET SECTION */

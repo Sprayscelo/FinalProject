@@ -1,10 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle&family=Nunito+Sans:wght@200&family=Playfair+Display&family=Titillium+Web&display=swap');
-body, html{
-    margin: 0%;
-    height: 100%;
+
+:root {
+    --cabecalho: #004346;
+    --fundo: #172a3a;
+    --letras: #09bc8a;
+    --opacidade: 0
 }
 
-* {
+body, html {
+    height: 100%;
+    position: relative;
+}
+
+#LayoutContainer {
+    height: 100%;
+    color: var(--letras);
+    background-color: var(--fundo);
     font-family: 'Dongle', sans-serif;
     font-family: 'Nunito Sans', sans-serif;
     font-family: 'Playfair Display', serif;
@@ -49,7 +60,7 @@ img {
 
 .navContainer a {
     color: #09bc8a;
-    font-weight: bold;
+    font-weight: 600;
     width: 100%;
     padding: 5px;
     position: relative;
@@ -105,6 +116,46 @@ img {
     cursor: pointer;
 }
 
+.neonButton {
+    color: var(--letras);
+    background-color: transparent;
+    padding: 5px 10px 5px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 
+        0px 0px 1em 0 hsla(187, 29%, 44%, 1);
+    border: solid 2px #09bc8a;
+    position: relative;
+}
+
+.neonButton:hover {
+    text-shadow: 0px 0px 3em #508991;
+    box-shadow: 0px 0px 30px 0px #508991;
+    background-color: #09bc8a;
+    color: #172a3a;
+    transition: all 350ms ease-in-out ;
+    position: relative;
+}
+
+.neonButton::after {
+    content: '';
+    background-color: var(--letras);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(110%) perspective(1em) rotateX(40deg) scale(1, 0.30);
+    filter: blur(1em);
+    transition: filter 350ms ease-in-out;
+    opacity: var(--opacidade);
+}
+
+.neonButton:hover::after {
+    opacity: 1;
+    transition: all 500ms ease;
+}
+
 /* Tickets/ServiceOrders Headers */
 
 #ticketHeader, #serviceOrderHeader, #costumerHeader, #equipmentsHeader, #productsHeader, #servicesHeader {
@@ -144,20 +195,21 @@ img {
 
 #commentContainerForm form {
     display: grid;
-    place-items: center;
     gap: 10px;
-    width: 100%;
+    place-items: end;
     
 }
 
 #commentContainerForm input {
-    justify-items: end;
-    width: 30%;
+    font-size: 12px;
+    width: 100px;
+
 }
 
 #commentContainerForm textarea {
     margin-top: 10px;
     width: 100%;
+    font-size: 12px;
 }
 
 /* ----------- */

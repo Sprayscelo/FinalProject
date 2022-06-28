@@ -16,9 +16,19 @@
 }
 
 #serviceOrderDetailsContainer {
+    display: grid;
     margin: 15px;
+    gap: 15px;
+    grid-template-columns: 1.8fr 1fr;
 }
 
+#serviceOrderDetailsContainer input, #serviceOrderDetailsContainer select, #serviceOrderDetailsContainer textarea {
+    background-color: var(--cabecalho);
+    color: var(--letra);
+    border: solid .5px ;
+    border-radius: 5px;
+
+}
 
 #serviceContentsSelection {
     display: grid;

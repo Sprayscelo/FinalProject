@@ -15,12 +15,13 @@ function statusSelected(id){
     let inputStatus = document.querySelectorAll(`#${id}`)
     inputStatus.forEach(statusTicket => {
         if(statusTicket.dataset.status === statusTicket.innerText) {
-            statusTicket.style.backgroundColor = "#6C757D"
-            statusTicket.style.color = "white"
+            statusTicket.style.backgroundColor = "#09bc8a"
+            statusTicket.style.color = "#172a3a"            
         }
     });
-
+    
 }
+
 
 function newTicket(element) {
     document.querySelector(".DefaultOption").hidden = true
@@ -83,22 +84,18 @@ function newTicket(element) {
                 break
 
                 case 14:
-                    ticketOptionsContent.innerHTML = document.querySelector("#newTicketConfiguracaoContainer").innerHTML
-                break
-
-                case 15:
                     ticketOptionsContent.innerHTML = document.querySelector("#newTicketValidacaoEventosContainer").innerHTML
                 break
 
-                case 16: 
+                case 15: 
                     ticketOptionsContent.innerHTML = document.querySelector("#newTicketVeiculoApitandoContainer").innerHTML
                 break
 
-                case 17: 
+                case 16: 
                     ticketOptionsContent.innerHTML = document.querySelector("#newTicketAlteracaoEventoContainer").innerHTML
                 break
 
-                case 18:
+                case 17:
                     ticketOptionsContent.innerHTML = document.querySelector("#newTicketLiberacaoVeiculoContainer").innerHTML
                 break
             }

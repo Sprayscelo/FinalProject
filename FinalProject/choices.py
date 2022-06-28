@@ -22,11 +22,11 @@ costumerTypeChoices = [
 
 ticketStatusChoices = [
 
-    ("Open","Open"),
-    ("In Progress","In Progress"),
-    ("Waiting for response","Waiting for response"),
-    ("Escaled", "Escaled"),
-    ("Closed", "Closed")
+    ("Aberto","Aberto"),
+    ("Em andamento","Em andamento"),
+    ("Aguardando resposta","Aguardando resposta"),
+    ("Escalado", "Escalado"),
+    ("Fechado", "Fechado")
 
 ]
 
@@ -84,15 +84,15 @@ Plataform = [
 # Status dos pedidos de venda
 
 statusOsChoices = [
-    ("Created","Created"),
-    ("Aproved", "Aproved"),
-    ("Waiting for supply","Waiting for supply"),
-    ("Waiting for schedule", "Waiting for schedule"),
-    ("Scheduled","Scheduled"),
-    ("Delivered", "Delivered"),
-    ("Billed","Billed"),
-    ("Warrantly", "Warrantly"),
-    ("Cancelled", "Cancelled")
+    ("Criado","Criado"),
+    ("Aprovado", "Aprovado"),
+    ("Aguardando suprimento","Aguardando suprimento"),
+    ("Aguardando agendamento", "Aguardando agendamento"),
+    ("Procedimento agendado","Procedimento agendado"),
+    ("Entregue", "Entregue"),
+    ("Faturado","Faturado"),
+    ("Garantia", "Garantia"),
+    ("Cancelado", "Cancelado")
 ]
 
 #Categorias dos ativos

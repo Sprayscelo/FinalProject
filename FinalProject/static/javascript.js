@@ -72,8 +72,8 @@ function statusSelected(id){
         let inputStatus = document.querySelectorAll(`#${id}`)
         inputStatus.forEach(statusTicket => {
             if(statusTicket.dataset.status === statusTicket.innerText) {
-                statusTicket.style.backgroundColor = "#6C757D"
-                statusTicket.style.color = "white"
+                statusTicket.style.backgroundColor = "#09bc8a"
+                statusTicket.style.color = "#172a3a"
             }
         });
         
@@ -94,3 +94,8 @@ function transition(element) {
     }
 }
 
+function adicionarComentario(elemento) {
+    elemento.parentElement.style.display = 'none'
+    comentarios = document.querySelector('#commentContainer')
+    comentarios.style.display = 'inline-block'
+}

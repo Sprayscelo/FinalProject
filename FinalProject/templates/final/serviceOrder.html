@@ -35,12 +35,13 @@
     <div class="text-center">
         <h1> {{ serviceOrdersDetails.tittle }}</h1>
     </div>
-    <div class="text-center" id="serviceOrdersStatusContainer">
+    <div class="text-center " id="serviceOrdersStatusContainer">
         {% csrf_token %}
         {% for status in serviceOrdersStatusChoices%}
-            <button type="button" data-status="{{ serviceOrdersDetails.status }}" name="serviceOrderDetailsStatus" id="serviceOrderDetailsStatus" class="btn btn-outline-secondary btn-sm">{{ status.0 }}</button>
+            <button type="button" data-status="{{ serviceOrdersDetails.status }}" name="serviceOrderDetailsStatus" id="serviceOrderDetailsStatus" class="neonButton">{{ status.0 }}</button>
         {% endfor %}
     </div>
+    <hr>
     <div id="serviceOrderDetailsContainer">
         <div id="ServiceOrdersForm">
             <form action="{% url 'serviceOrdersDetails' serviceOrdersDetails.id %}" method="POST" >
@@ -128,6 +129,7 @@
             </form>
         </div>
         <section>
+            <h2 class="text-center">Comments</h2>
             <div id="commentContainerForm">
                 <form action="" method="POST">
                     {% csrf_token %}

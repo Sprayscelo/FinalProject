@@ -37,15 +37,13 @@ class Comment(models.Model):
         return f"{self.user} | {self.content} | Related Tickets ID`s: {[i.id for i in self.relatedTicket.all()]} | Created at {formatDate}"
 
 class Ticket(models.Model):
-    
     tittle = models.CharField(max_length=30, default="")
     priority = models.CharField(choices=priorityChoices, max_length=1)
     group = models.CharField(max_length=255, choices=ticketGroup, default="Support")
-    status = models.CharField(max_length=255,choices=ticketStatusChoices, default="")
+    status = models.CharField(max_length=255,choices=ticketStatusChoices, default="Open")
     description = models.TextField(blank=False)
     costumer = models.ForeignKey(Costumer, on_delete=models.CASCADE, related_name="ticketCostumer")
     plate = models.CharField(max_length=8, default="")
-    comment = models.JSONField(default=list, blank=True)
     responsible = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ticketResponsible", null=True, blank=True)
     createDate = models.DateTimeField(auto_now_add=True)
     createdBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ticketCreator")
@@ -55,11 +53,13 @@ class Ticket(models.Model):
     plataform = models.CharField(choices=Plataform, max_length=255, default="")
     solution = models.TextField(default="")
     score = models.IntegerField(default=0)
+    document = models.FileField(null=True, blank=True, upload_to=f'ticket/')
     comments = models.ManyToManyField(Comment, default="", blank=True, related_name="relatedTicket")
 
     def __str__(self):
+        self.document = models.FileField(null=True, blank=True, upload_to=f'ticket/{self.id}')
         return f"ID:{self.id} | Tittle: {self.tittle} | Costumer: {self.costumer} | Responsible: {self.responsible}"
-
+    
     def serialize(self):
         return {
             "tittle": self.tittle,

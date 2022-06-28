@@ -22,7 +22,7 @@
             <span> {{ product.brand }}</span>
             <span> {{ product.categories }}</span>
             <span> {{ product.producer }}</span>
-            <span> {{ product.createDate }}</span>
+            <span> {{ product.createDate|date:"d/m/Y - H:i:s" }}</span>
         </a>
     </div>
     {% endfor %}

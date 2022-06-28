@@ -1,8 +1,8 @@
 {%extends "final/layout.html" %}
 {% load static %}
 {% block tickets %}
+<!-- <a class="btn btn-outline-secondary" href="{% url 'newTicket' %}">Open Ticket </a> -->
 {% if allTickets %}
-<a class="btn btn-outline-secondary" href="{% url 'newTicket' %}">Open Ticket </a>
 <h1 class="text-center">Tickets Visualization</h1>
 <div id="ticketsContainer">
         <div id="ticketHeader">
@@ -38,12 +38,12 @@
         <h1> {{ticketDetails.tittle}}</h1>
     </div>
     <div class="text-center" id="ticketDetailsStatusContainer">
-            {% csrf_token %}
-            {% for status in ticketStatus%}
-                <button type="button" data-status="{{ ticketDetails.status }}" data-id="{{ ticketDetails.id }}" id="ticketDetailstStatus" class="btn btn-outline-secondary btn-sm">{{status.1}}</button>
-            {% endfor%}
+        {% csrf_token %}
+        {% for status in ticketStatus%}
+            <button type="button" data-status="{{ ticketDetails.status }}" data-id="{{ ticketDetails.id }}" id="ticketDetailstStatus" class="neonButton">{{status.1}}</button>
+        {% endfor%}
     </div>
-    <br>
+    <hr>
     <div data-id="{{ticketDetails.id}}" id="ticketDetailsContainer">
         <div id="TicketDetailsForm">
             <form action="{% url 'ticketDetails' ticketDetails.id%}" method="POST">
@@ -125,29 +125,33 @@
                 <input type="submit" class="btn btn-warning text-center form-control" value="Save" id="ticketEditSubmit" name="ticketDetailsSubmit">
             </form>
         </div>
-        <hr>
-        <h2 class="text-center">Commentaries</h2>
-        <section>
-            <div id="commentContainerForm">
-                <form action="" method="POST">
-                    {% csrf_token %}
-                        <textarea name="commentContent" id="commentContent" cols="" rows="2"></textarea>
-                    <input class="btn btn-dark" value="Add Comment" type="submit" name="" id="">
-                </form>
-            </div>
-            <div id="commentContainerAll">
-                {% for comment in ticketDetails.comments.all reversed %}
-                <div>
-                    <p> <strong> {{ comment.user }} </strong></p>
-                    <span> {{ comment.content }}</span>
-                    <div>
-                        <small> {{ comment.createDate|date:"d/m/Y - H:i:s" }}</small>
-                    </div>
+        <div class="text-center">
+            <button onclick="adicionarComentario(this)" id="adicionarComentario" class="btn btn-warning form-control">Add comentario</button>
+        </div>
+        <div style="display: none;" id="commentContainer">
+            <h2 class="text-center">Commentaries</h2>
+            <section>
+                <div id="commentContainerForm">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <textarea name="commentContent" id="commentContent" cols="" rows="4"></textarea>
+                        <input class="btn-sm btn-dark" value="Add Comment" type="submit" name="" id="">
+                    </form>
                 </div>
-                <hr>
-                {% endfor %}
-            </div>
-        </section>
+                <div id="commentContainerAll">
+                    {% for comment in ticketDetails.comments.all reversed %}
+                    <div>
+                        <p> <strong> {{ comment.user }} </strong></p>
+                        <span> {{ comment.content }}</span>
+                        <div>
+                            <small> {{ comment.createDate|date:"d/m/Y - H:i:s" }}</small>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
         <!-- COMETARIOS DOS TICKETS -->
     </div>
     <script src="{% static 'tickets.js' %}"></script>

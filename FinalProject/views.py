@@ -1,3 +1,4 @@
+from re import M
 from tokenize import group
 from turtle import title
 from urllib import response
@@ -199,7 +200,7 @@ def newTicket(request):
    responsavel = random.choices([int(us.id) for us in Users])
    if request.method == "POST":
       tipoChamado = request.POST["tipoChamado"]
-      if int(tipoChamado) in [1,2,3,4,5,6,7]:
+      if int(tipoChamado) > 0:
          match int(tipoChamado):          
             case 1:
                novoTicket = Ticket(
@@ -306,6 +307,7 @@ def newTicket(request):
                   createdBy=request.user,
                   score=sum([1, int(usuarioAtivo.costumer.priority)])
                )
+               novoTicket.save()
             
             case 8:
                novoTicket = Ticket(
@@ -320,6 +322,8 @@ def newTicket(request):
                   createdBy=request.user,
                   score=sum([2, int(usuarioAtivo.costumer.priority)])
                )
+               novoTicket.save()
+
             case 9:
                novoTicket = Ticket(
                   tittle="Problemas com relatório",
@@ -333,10 +337,12 @@ def newTicket(request):
                   createdBy=request.user,
                   score=sum([2, int(usuarioAtivo.costumer.priority)])
                )
+               novoTicket.save()
+
             case 10:
                novotTicket = Ticket(
                   tittle="Problema de leitura de dados",
-                  priority=1,
+                  priority=2,
                   group=ticketGroup[0],
                   status=ticketStatusChoices[0],
                   description=f'Problema de leitura relacionado a {request.POST["NTLD_tipoDados"]}\n\n',
@@ -346,6 +352,7 @@ def newTicket(request):
                   createdBy=request.user,
                   score=sum([2, int(usuarioAtivo.costumer.priority)])
                )
+               novoTicket.save()
 
             case 11:
                novoTicket = Ticket(
@@ -359,9 +366,79 @@ def newTicket(request):
                   createdBy=request.user,
                   score=sum([2, int(usuarioAtivo.costumer.priority)])
                )
+               novoTicket.save()
+               
             case 12:
                novoTicket = Ticket(
-                  
+                  tittle="Teste de CAN",
+                  priority=3,
+                  description=f"Mascara CAN a ser testada: {request.POST['NTTC_mascara']}\n\nMarca do veiculo: {request.POST['NTTC_fabricante']}\nModelo do veiculo: {request.POST['NTTC_modelo']}\nAno:{request.POST['NTTC_ano']}\n\nInformações adicionais:{request.POST['NTTC_infoAdicional']}",
+                  costumer=usuarioAtivo.costumer,
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([3, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+
+            case 13:
+               novoTicket = Ticket(
+                  tittle='Problemas de registros de passageiros',
+                  priority=3,
+                  description=f'Nome completo do passageiro: {request.POST["NTRP_nome"]}\n\n Tag do passageiro: {request.POST["NTRP_tag"]}\n\n {request.POST["NTRP_matricula"]}\n\n Empresas que esse passageiro pode ter utilizado: {", ".join(request.POST.getlist("NTRP_empresa"))}',
+                  costumer=usuarioAtivo.costumer,
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([3, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+
+            case 14:
+               novoTicket = Ticket(
+                  tittle='Validacao de eventos',
+                  priority=3,
+                  description=f'Nome do evento gerado: {request.POST["NTVE_nome"]}',
+                  costumer=usuarioAtivo.costumer,
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([3, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+
+            case 15:
+               novoTicket=Ticket(
+                  tittle='Veiculo apitando',
+                  priority=3,
+                  plate=request.POST["NTVA_placa"],
+                  description=f'Data aproximada do apito indevido: {request.POST["NTVA_data"]}\n\nInformações adicionais: {request.POST["NTVA_infoAdicional"]}',
+                  costumer=usuarioAtivo.costumer,
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([3, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+
+            case 16:
+               novoTicket=Ticket(
+                  tittle='Alteracao de evento',
+                  priority=3,
+                  plate=request.POST["NTAE_placa"],
+                  description=f'Nome do evento: {request.POST["NTAE_evento"]}\n\nAlteração realizada no {request.POST["NTAE_tipoAlteracao"]}\n\nValor atual: {request.POST["NTAE_valorAtual"]}\nNovo valor: {request.POST["NTAE_valorNovo"]}\n\nJustificativa: {request.POST["NTAE_justificativa"]}',
+                  costumer=usuarioAtivo.costumer,
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([3, int(usuarioAtivo.costumer.priority)])
+               )
+               novoTicket.save()
+            case 17:
+               novoTicket=Ticket(
+                  tittle='Liberação de veiculo',
+                  priority=3,
+                  plate=request.POST["NTLV_placa"],
+                  description=f'ID da chave do motorista a ser liberado: {request.POST["NTLV_motorista"]}\n\nNome: {request.POST["NTLV_nomeContato"]}\n\nNumero de telefone: {request.POST["NTLV_telefoneContato"]}\n\nAutorização para JUMPER: {request.POST["NTLV_jumper"]}\n\nInformações adicionais: {request.POST["NTLV_infoAdicional"]}',
+                  costumer=usuarioAtivo.costumer,
+                  responsible=User.objects.get(id=responsavel[0]),
+                  createdBy=request.user,
+                  score=sum([3, int(usuarioAtivo.costumer.priority)])
                )
 
    return render(request, "final/newTicket.html",{
