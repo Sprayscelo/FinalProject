@@ -39,13 +39,10 @@ const csrftoken = getCookie('csrftoken');
                     }),
                     headers: {"X-CSRFToken" : csrftoken}
                 }).then(response => {
-                    e.target.style.backgroundColor = "#6C757D"
-                    e.target.style.color = "white"
                     location.reload()
                     switch(element.id) {
                         case "ticketDetailstStatus":
-                            console.log(element.id)
-                            if (e.target.value != "Closed") {
+                            if (e.target.value != "Fechado") {
                                 document.querySelector("#ticketDetailsEndDate").value = ""
                             }
             
@@ -53,7 +50,7 @@ const csrftoken = getCookie('csrftoken');
             
                             // Setar ticket end date para data de fechamento do ticket
             
-                            if(document.querySelector("#ticketDetailsEndDate").value === "" && e.target.innerText === "Closed") {
+                            if(document.querySelector("#ticketDetailsEndDate").value === "" && e.target.innerText === "Fechado") {
                                 const endDate = new Date()
                                 document.querySelector("#ticketDetailsEndDate").value = endDate.toLocaleString("pt-BR", {timezone: "UTC"})
                                 
@@ -78,6 +75,8 @@ function statusSelected(id){
         });
         
 }
+
+
 
 function transition(element) {
     const navBarContainer = document.querySelector(".mainNavContainer")

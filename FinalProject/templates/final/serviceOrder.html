@@ -128,29 +128,33 @@
                 </div>
             </form>
         </div>
-        <section>
-            <h2 class="text-center">Comments</h2>
-            <div id="commentContainerForm">
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <textarea class="form-control" name="commentContent" id="commentContent" cols="" rows="2"></textarea>
-                    <input class="btn btn-dark" value="Add Comment" type="submit" name="" id="">
-                </form>
-            </div>
-            <div id="commentContainerAll">
-                {% for comment in serviceOrdersDetails.comments.all reversed %}
-                <div>
-                    <p> <strong> {{ comment.user }} </strong></p>
-                    <span> {{ comment.content }}</span>
-                    <div>
-                        <small> {{ comment.createDate|date:"d/m/Y - H:i:s" }}</small>
-                    </div>
+        <div class="text-center">
+            <button onclick="adicionarComentario(this)" id="adicionarComentario" class="btn btn-warning form-control">Add comentario</button>
+        </div>
+        <div style="display: none;" id="commentContainer">
+            <h2 class="text-center">Commentaries</h2>
+            <section>
+                <div id="commentContainerForm">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <textarea name="commentContent" id="commentContent" cols="" rows="4"></textarea>
+                        <input class="btn-sm btn-dark" value="Add Comment" type="submit" name="" id="">
+                    </form>
                 </div>
-                <hr>
-                {% endfor %}
-            </div>
-        </section>
-    </div>
+                <div id="commentContainerAll">
+                    {% for comment in serviceOrdersDetails.comments.all reversed %}
+                    <div>
+                        <p> <strong> {{ comment.user }} </strong></p>
+                        <span> {{ comment.content }}</span>
+                        <div>
+                            <small> {{ comment.createDate|date:"d/m/Y - H:i:s" }}</small>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
 </div>
 {% endif%}
 <script src="{% static 'serviceOrder.js' %}"></script>

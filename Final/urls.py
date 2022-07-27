@@ -21,3 +21,4 @@ urlpatterns = [
     path("", include("FinalProject.urls")),
     path("mascarasCAN", include("mascarasCAN.urls"))
 ]
+ 

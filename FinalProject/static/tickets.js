@@ -1,6 +1,3 @@
-
-
-
 let selectionCat = document.querySelector('#newTicketSelectOptions')
 
 selectionCat.addEventListener('change', e => {
@@ -21,7 +18,6 @@ function statusSelected(id){
     });
     
 }
-
 
 function newTicket(element) {
     document.querySelector(".DefaultOption").hidden = true

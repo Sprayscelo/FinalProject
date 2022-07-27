@@ -61,8 +61,6 @@ hr {
     margin-bottom: 30px;
 }
 
-
-
 /* ------ */
 #ticketEditSubmit {
     grid-column: 1/-1;
@@ -78,13 +76,7 @@ hr {
     grid-column: 1/-1;
 }
 
-#adicionarComentario {
-    height: fit-content;
-    width: fit-content;
-    vertical-align: top;
-    background-color: var(--letras);
-    border: none;
-}
+
 
 /* NEW TICKET SECTION */
 .mainFormDiv {

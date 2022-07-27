@@ -176,10 +176,13 @@ img {
     display: grid;
     grid-template-columns: 5% repeat(6, minmax(100px, 1fr));
     place-items: center;
-    padding-bottom: 5px;
-    padding-top: 5px;
     padding: 10px 0px 10px 0px ;
-    
+    background-color: #508991;
+    border: none;
+    color: var(--fundo);
+    font-weight: bold;
+    margin: 10px;
+    height: 50px;
 }
 
 
@@ -188,7 +191,9 @@ img {
 /* Mouse Over effect for Tickets/ServiceOrders */
 
 #allTickets a:hover, #allServiceOrder a:hover, #allCostumers a:hover, #allEquipments a:hover, #allProducts a:hover, #allServices a:hover {
-    background-color: rgb(225, 227, 240);
+    background-color: var(--letras);
+    transform: scale(101%);
+    transition: all 0.3s ease-in;
 }
 
 /* SEÇÃO DE COMENTARIOS */
@@ -210,6 +215,14 @@ img {
     margin-top: 10px;
     width: 100%;
     font-size: 12px;
+}
+
+#adicionarComentario {
+    height: fit-content;
+    width: fit-content;
+    vertical-align: top;
+    background-color: var(--letras);
+    border: none;
 }
 
 /* ----------- */
